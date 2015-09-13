@@ -1,12 +1,12 @@
-#+TITLE: Workbook
+#+TITLE: FormulaPages
 #+SETUPFILE: setup.org
 
-* Workbook v1.0.0
+The Master Plan for FormulaPages project.
+
+* FormulaPages v1.0.0
   
   A modern, fast and comprehensive spreadsheet language for JavaScript and the Web.
 
-  Purchase a commercial license or use freely under terms and conditions of the GPLv3.
-  
   #+BEGIN_SRC js
     var wb = new workbook();
     var ws = wb.sheet();
