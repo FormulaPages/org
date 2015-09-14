@@ -1,0 +1,2647 @@
+#+TITLE: Functions
+#+AUTHOR: Peter Moresi
+
+* Reference
+** Logical
+   :PROPERTIES: 
+   :ID:     logical
+   :END:
+*** AND
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Returns TRUE if all arguments evaluate to TRUE; otherwise returns FALSE.
+    
+    #+BEGIN_EXAMPLE
+     AND(TRUE, FALSE) = FALSE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    AND(1, TRUE) = TRUE
+    #+END_EXAMPLE
+    
+*** OR
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Returns TRUE if any argument is true.
+    
+    #+BEGIN_EXAMPLE
+    OR(TRUE, FALSE)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    OR(FALSE, FALSE) = FALSE
+    #+END_EXAMPLE
+    
+*** NOT
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Returns TRUE when FALSE and FALSE when TRUE;
+    
+    #+BEGIN_EXAMPLE
+    NOT(FALSE)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    NOT(TRUE) = FALSE
+    #+END_EXAMPLE
+    
+*** IF
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Returns true_value if a condition you specify evaluates to TRUE and false_value if it evaluates to FALSE.
+    
+    #+BEGIN_EXAMPLE
+    IF(1,"Yes", "No") = "Yes"
+    #+END_EXAMPLE
+    
+*** IFERROR
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Returns a value you specify if a formula evaluates to an error; otherwise, 
+    returns the result of the formula.
+    
+    #+BEGIN_EXAMPLE
+    IFERROR(1/0, "Error") = "Error"
+    #+END_EXAMPLE
+    
+*** IFNA
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Returns the value you specify if the formula returns the #N/A error value; otherwise returns the result of the formula.
+    
+    #+BEGIN_EXAMPLE
+    =IFNA(NA(), TRUE, FALSE)
+    #+END_EXAMPLE
+    
+*** SWITCH
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Evaluates an expression against a list of values and returns the matching result.
+    
+    #+BEGIN_EXAMPLE
+    SWITCH(1, 1, "January", 2, "February", 3,
+    "March", 4, "April", 5, "May", 6, "June", 7, "July", 8,
+    "August", 9, "September", 10, "October", 11, "November", 12,
+    "December", "Unknown month number") = "January"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    SWITCH(1, 1, "Good", 2, "OK", 3, "Bad") = "Good"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    SWITCH(3, 1, "Good", 2, "OK", 3, "Bad") = "Bad"
+    #+END_EXAMPLE
+    
+*** CHOOSE
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :circleci: y
+    :END:
+    
+    Choose a value from a list.
+    
+    #+BEGIN_EXAMPLE
+    CHOOSE(2, "Hello", "World") = "World"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    CHOOSE(3, "One", "Two", "Three") = "Three"
+    #+END_EXAMPLE
+    
+*** XOR
+    :PROPERTIES: 
+    :published: y
+    :github:   y
+    :npm:      y
+    :END:
+    
+    Returns the exclusive OR for argument1, argument2...argumentN.
+    
+    #+BEGIN_EXAMPLE
+     XOR(0, 1, 0) = TRUE
+    #+END_EXAMPLE
+    
+** Information
+   :PROPERTIES: 
+   :ID:       information
+   :END:
+*** CELL
+    
+    Returns information about a cell.
+    
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var ws = wb.sheet();
+
+      assert( wb.run(ws, 'CELL("row", A1) = 1') );
+      assert( wb.run(ws, 'CELL("col", A1) = 1') );
+
+      assert( wb.run(ws, 'CELL("row", A2) = 2') );
+      assert( wb.run(ws, 'CELL("col", B1) = 2') );
+
+    #+END_SRC
+    
+*** DEPENDENTS
+    
+    Returns the list of dependents for a given cell.
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var sheet = wb.sheet();
+
+      wb.set(sheet, {
+          A1: "=SUM(A2:A3)",
+          A2: 50,
+          A3: 50,
+          A4: "=A2 + A3"
+      });
+
+      var dependents = wb.run(sheet, "DEPENDENTS(A2)");
+      assert( dependents.length == 2, "Should have 1 dependent");
+
+      dependents = wb.run(sheet, "DEPENDENTS(A3)");
+      assert( dependents.length == 2, "Should have 1 dependent");
+
+      assert( "Sheet1!A1" === dependents[0], "Should be equal");
+      assert( "Sheet1!A4" === dependents[1], "Should be equal");
+    #+END_SRC
+    
+*** INFO
+    
+    Returns information about the operating environment running your workbook.
+    
+    |-----------+-----------------------------------------------------+-----------|
+    | Text Type | Returns                                             | Supported |
+    |-----------+-----------------------------------------------------+-----------|
+    | directory | Location where spreadsheet is stored                |           |
+    | numfile   | Count of active worksheets in all open workbooks    |           |
+    | origin    | #NA!                                                |           |
+    | osversion | Returns browser or container version                |           |
+    | recalc    | Current recalculation mode; "Automatic" or "Manual" |           |
+    | release   | Version number; as text                             |           |
+    | system    | Return browser or container name                    |           |
+    |-----------+-----------------------------------------------------+-----------|
+    
+    #+BEGIN_SRC js
+      // TBD: Make this work!
+      var wb = new workbook();
+      var ws = wb.sheet();
+      ws.run('INFO("directory")');
+      ws.run('INFO("numfile")');
+      ws.run('INFO("origin")');
+      ws.run('INFO("")');
+      ws.run('INFO("directory")');
+      ws.run('INFO("directory")');
+    #+END_SRC
+    
+*** ISARRAY
+    
+    Tests if the value is an array.
+    
+    #+BEGIN_EXAMPLE
+    ISARRAY({1,2,3}) = TRUE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISBLANK("FOO") = FALSE
+    #+END_EXAMPLE
+    
+*** ISBLANK
+    
+    Tests if the value is blank (empty).
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var ws = wb.sheet();
+
+      wb.set(0, "A1", null);
+      wb.set(0, "A2", undefined);
+      wb.set(0, "A3", "");
+      wb.set(0, "A4", "Hello");
+
+      assert(wb.run(0, 'ISBLANK(A1) = TRUE'), "A1 should be blank");
+      assert(wb.run(0, 'ISBLANK(A2) = TRUE'), "A2 should be blank");
+      assert(wb.run(0, 'ISBLANK(A3) = FALSE'), "A3 should not be blank"); // empty string is not blank
+      assert(wb.run(0, 'ISBLANK(A4) = FALSE'), "A4 should not be blank");
+    #+END_SRC
+    
+*** ISEMAIL
+*** ISERR
+    
+    Test for any error but #N/A.
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var ws = wb.sheet();
+      wb.set(ws, "A1", workbook.errors.na);
+      wb.set(ws, "A2", workbook.errors.div0);
+      wb.set(ws, "A3", Number.POSITIVE_INFINITY);
+
+      assert(
+          wb.run(ws, "ISERR(A1) = FALSE"),
+          "A1 should not be error"
+      );
+
+      assert(
+          wb.run(ws, "ISERR(A2) = TRUE"),
+          "A2 should be error"
+      );
+
+      assert(
+          wb.run(ws, "ISERR(A3) = TRUE"),
+          "A3 should be error"
+      );
+
+    #+END_SRC
+    
+*** ISERROR
+    
+    Test for error.
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var ws = wb.sheet();
+      wb.set(ws, "A1", workbook.errors.na);
+      wb.set(ws, "A2", workbook.errors.div0);
+      wb.set(ws, "A3", Number.POSITIVE_INFINITY);
+
+      assert(
+          wb.run(ws, "ISERROR(A1) = TRUE"),
+          "A1 should be error"
+      );
+
+      assert(
+          wb.run(ws, "ISERROR(A2) = TRUE"),
+          "A2 should be error"
+      );
+
+      assert(
+          wb.run(ws, "ISERROR(A3) = TRUE"),
+          "A3 should be error"
+      );
+
+    #+END_SRC
+    
+*** ISEVEN
+    
+    Test for even number.
+    
+    #+BEGIN_SRC js
+       assert( workbook.run('ISEVEN(1) = FALSE'), "should be true");
+       assert( workbook.run('ISEVEN(2) = TRUE'), "should be true");
+    #+END_SRC
+    
+    Test values in a worksheet.
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var ws = wb.sheet();
+      wb.set(ws, "A1", 1)
+      wb.set(ws, "A2", 2)
+      assert( wb.run(ws, "ISEVEN(A1) = FALSE"), "should be true" );
+      assert( wb.run(0, "ISEVEN(A2) = TRUE"), "should be true" );
+    #+END_SRC
+    
+*** ISFORMULA
+    
+    Test if cell has formula.
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var ws = wb.sheet();
+      wb.set(ws, "A1", 2);
+      wb.set(ws, "A2", "=A1^8");
+      assert( wb.run(0, "ISFORMULA(A1) = FALSE") );
+      assert( wb.run(0, "ISFORMULA(A2) = TRUE") );
+    #+END_SRC
+    
+*** ISLOGICAL
+    
+    Test for TRUE or FALSE
+    
+    #+BEGIN_EXAMPLE
+    ISLOGICAL(1) = FALSE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISLOGICAL("HELLO") = FALSE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISLOGICAL(TRUE) = TRUE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISLOGICAL(FALSE) = TRUE
+    #+END_EXAMPLE
+    
+*** ISNA
+    
+    Test for NA error.
+    
+    #+BEGIN_EXAMPLE
+    ISNA("foo") = FALSE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISNA(NA()) = TRUE
+    #+END_EXAMPLE
+    
+*** ISNONTEXT
+    
+    Test for non text
+    
+    #+BEGIN_EXAMPLE
+    ISNONTEXT("foo") = FALSE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISNONTEXT(NA()) = TRUE
+    #+END_EXAMPLE
+    
+*** ISNUMBER
+    
+    Returns TRUE if the *value_to_check* is a number.
+    
+    #+BEGIN_EXAMPLE
+    ISNUMBER("FOO") = FALSE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISNUMBER(1)
+    #+END_EXAMPLE
+    
+*** ISODD
+    
+    Returns true if the value is odd.
+    
+    #+BEGIN_EXAMPLE
+    ISODD(1) = TRUE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISODD(2) = FALSE
+    #+END_EXAMPLE
+    
+*** ISTEXT
+    
+    Returns TRUE if the value is text.
+    
+    #+BEGIN_EXAMPLE
+    ISTEXT("foo") = TRUE
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    ISTEXT(2) = FALSE
+    #+END_EXAMPLE
+    
+*** ISRANGE
+    
+    Return TRUE when the value is a range or a cell reference.
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var ws = wb.sheet();
+
+      assert( wb.run(ws, "ISRANGE(A1:A3)"), "A1:A3 is not a range" );
+      assert( wb.run(ws, 'ISRANGE(OFFSET(A1,0,0,2,2))'), "OFFSET function not returning range" );
+         
+    #+END_SRC
+    
+*** ISREF
+    
+    Return TRUE when the value is a range or a cell reference.
+    
+    #+BEGIN_SRC js
+       wb = new workbook();
+       ws = wb.sheet();
+
+       assert( ws.run('ISREF(A1) = TRUE') );
+       assert( ws.run('ISREF("FOO") = FALSE') );
+          
+    #+END_SRC
+    
+*** ISURL
+*** N
+    
+    Returns a value converted to a number.
+    
+    #+BEGIN_EXAMPLE
+      N("5.2") = 0
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      N(NA()) = NA()
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      N(TRUE) = 1
+    #+END_EXAMPLE
+    
+*** NA
+    
+    Returns the error "#NA!"
+    
+    #+BEGIN_SRC js
+       assert( workbook.run( "NA()" ) === workbook.errors.na, "should be true" );
+    #+END_SRC
+    
+*** PRECEDENTS
+    
+    Return the list of precedents for a given cell.
+    
+    #+BEGIN_SRC js
+      var wb = new workbook();
+      var sheet = wb.sheet();
+
+      sheet.set({
+          A1: "=SUM(A2:A3)",
+          A2: 50,
+          A3: 50,
+          A4: "=A2+Sheet1!A3"
+      });
+
+      var precedents = sheet.run("PRECEDENTS(A1)");
+      assert( precedents.length == 1, "Should have 1 precedents");
+
+      assert( precedents[0].type === "range", "Type should be range");
+      assert( workbook.fn.ISRANGE(precedents[0].range), "Should be range object");
+
+      precedents = sheet.run("PRECEDENTS(A4)");
+      assert( precedents.length == 2, "Should have 2 precedents");
+
+      assert( precedents[0].type === "cell", "Type should be cell");
+      assert( precedents[0].subtype === "local", "Subtype should be local");
+      assert( precedents[0].addr === "A2", "Addr should be A2");
+
+      assert( precedents[1].type === "cell", "Type should be cell");
+      assert( precedents[1].subtype === "remote", "Subtype should be local");
+      assert( precedents[1].sheetName === "Sheet1", "Sheet name should be Sheet1");
+      assert( precedents[1].addr === "A3", "Addr should be A3");
+
+    #+END_SRC
+    
+*** SHEET
+    
+    Returns a named worksheet.
+    
+    #+BEGIN_SRC js
+       var ws = workbook.Current.sheet({ name: "TipCalculator" });
+       assert( ws.run('=SHEET("TipCalculator")') );
+    #+END_SRC
+    
+*** SHEETS
+    
+    Returns the number of sheets in the workbook.
+    
+    #+BEGIN_SRC js
+      var ws = workbook.Current.sheet({ name: "SheetCount" });
+      assert( ws.run('SHEETS()') === Object.keys(workbook.Current.worksheets).length, "SHEETS returns unexpected value"  );
+    #+END_SRC
+    
+*** TYPE
+    
+    Returns the type of value. Use TYPE when the behavior of another function depends on the type of value in a particular cell.
+    
+    #+BEGIN_SRC js
+      assert( workbook.run('=TYPE(1) = 1'), "number should be 1" );
+      assert( workbook.run('=TYPE("Foo") = 2'), "string should be 2" );
+      assert( workbook.run('=TYPE(TRUE) = 4'), "boolean should be 4" );
+      assert( workbook.run('=TYPE(NA()) = 16'), "error should be 16" );
+    #+END_SRC
+    
+** Lookup and Reference
+   :PROPERTIES: 
+   :ID:       lookup
+   :END:
+*** ADDRESS
+    
+    Returns a cell reference given a row and column.
+    
+    #+BEGIN_EXAMPLE
+      ADDRESS(1, 1) = "$A$1"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      ADDRESS(1, 2, 2) = "B$1"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      ADDRESS(3, 2, 3) = "$B3"
+    #+END_EXAMPLE   
+    
+*** COLUMN
+    
+    Returns the column number of a specified cell.
+    
+    #+BEGIN_EXAMPLE
+      COLUMN(A1) = "A"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      COLUMN("A1") = "A"
+    #+END_EXAMPLE
+    
+*** COLUMNS
+    
+    Returns the number of columns in a specified array or range.
+    
+    #+BEGIN_EXAMPLE
+      COLUMNS({1,2,3,4,5}) = 5
+    #+END_EXAMPLE
+    
+    All columns must be same size.
+    
+    #+BEGIN_EXAMPLE
+      COLUMNS({1,2,3,4,5;1,2,3,4,5}) = 5
+    #+END_EXAMPLE
+    
+    When they are not the same size then #VALUE? is returned.
+    
+    #+BEGIN_EXAMPLE
+      ISERROR(COLUMNS({1,2,3,4,5;1,2}))
+    #+END_EXAMPLE
+    
+*** HLOOKUP
+    
+    Lookup a value in a table hortizonally on the first row and retreive a value from the matching column and specified row.
+    
+    HLOOKUP(lookup_value, lookup_array, index, exactmatch)
+    
+    #+BEGIN_EXAMPLE
+     HLOOKUP("C", {{"A","B","C"},{1,2,3}}, 2) = 3
+    #+END_EXAMPLE
+    
+*** INDEX
+    
+    Lookup an index in an array or reference.
+    
+    Array Form
+    
+    INDEX(array, row_num, [column_num])
+    
+    #+BEGIN_EXAMPLE
+        INDEX({{"A","B","C"}}, 1, 1) = "A"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+        INDEX({{"A","B","C"}}, 1, 2) = "B"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+        INDEX({{"A","B","C"}, {"D"}}, 2) = "D"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+        INDEX({"A","B","C";"D"}, 1, 3) = "C"
+    #+END_EXAMPLE
+    
+    Referenced Form
+    
+    INDEX(reference, row_offset, [column_offset])
+    
+    #+BEGIN_SRC js
+        var wb = new workbook();
+        var ws =  wb.sheet();
+        ws.set("A1", "A");
+        ws.set("B1", "B");
+        ws.set("C1", "C");
+        ws.set("A2", "D");
+        ws.set("B2", "E");
+        ws.set("C2", "F");
+
+        assert( ws.run('=INDEX(A1, 1, 1) = "A"' ), "Should be A" );
+        assert( ws.run('=INDEX(A1:A3, 1, 2) = "B"' ), "Should be B" );
+        assert( ws.run('=INDEX(A1:B4, 1, 3) = "C"' ), "Should be C" );
+
+
+        assert( ws.run('=INDEX(A1:A3, 2, 1) = "D"' ), "Should be D" );
+        assert( ws.run('=INDEX(A1, 2, 2) = "E"' ), "Should be E" );
+        assert( ws.run('=INDEX(A1:Z10, 2, 3) = "F"' ), "Should be F" );
+
+    #+END_SRC
+    
+*** INDIRECT
+    
+    Returns a cell reference given a string.
+    
+    #+BEGIN_EXAMPLE
+      ISCELL(INDIRECT("A1"))
+    #+END_EXAMPLE
+    
+*** LOOKUP
+    Vector Form
+
+    LOOKUP(lookup_value, lookup_vector, lookup_array)
+
+      #+BEGIN_EXAMPLE
+      LOOKUP("C", {"A","B","C"}, {1,2,3}) = 3
+      #+END_EXAMPLE
+
+    Array Form 
+
+    The array form searches the array by row or column depending on the dimensions of the array.
+    
+    If the array is wider then tall then the search is on the first row; the result being from the matching row and last column.
+
+    If the array is taller then wide then the search is on the first column; the result being from the last row and matching column.
+
+    LOOKUP(lookup_value, lookup_array)
+
+    Wide Array:
+      #+BEGIN_EXAMPLE
+        LOOKUP("C", {"A","B","C","D","E","F";"foo";1,2,3,4,5,6}) = 3
+      #+END_EXAMPLE
+
+    Tall Array:
+      #+BEGIN_EXAMPLE
+        LOOKUP("C", {"A",1;"B",2;"C",3;"D",4;"E",5;"F",6}) = 3
+      #+END_EXAMPLE
+
+*** MATCH
+    
+    Returns the column matched by a *lookup_value* in a *lookup_reference*.
+    
+    MATCH(lookup_value, lookup_reference, match_type)
+    
+    #+BEGIN_EXAMPLE
+       =MATCH("b",{"a","b","c"},0) = 2
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       =MATCH("a",{"aa","bb","cc"},0) = NA()   
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       =MATCH("a?",{"aa","bb","cc"},0) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       =MATCH("?b",{"aa","bb","cc"},0) = 2
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       =MATCH("b~",{"aa","b?","cc"},0) = 2
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       =MATCH("c*c",{"aa","b?","cfoobarc"},0) = 3
+    #+END_EXAMPLE
+    
+    #+BEGIN_SRC js
+       var wb = new workbook();
+       var ws = wb.sheet();
+
+       ws.set([["aa","bb","cc","dd","ee"]]); // set A1:A5
+       assert( ws.run('MATCH("aa", A1:A5, 0) = 1'), "should return 1");
+       assert( ws.run('MATCH("e?", A1:A5, 0) = NA()'), "should return 5" );
+    #+END_SRC
+    
+*** OFFSET
+    Returns a reference to a cell a given number of rows and columns from a reference.
+
+    OFFSET(ref, rows, cols, height, width)
+     
+     #+BEGIN_SRC js
+       var wb = new workbook();
+       var ws = wb.sheet();
+       wb.set(ws, "A1", 1);
+       wb.set(ws, "B1", 2);
+       wb.set(ws, "A2", 3);
+
+       assert( wb.run(ws, '=+OFFSET(A1,0,1) = 2'), "Value should be 2" );
+       assert( wb.run(ws, '=+OFFSET(A1,1,0) = 3'), "value should be 3" );
+       assert( wb.run(ws, '=ISBLANK(OFFSET(A1,2,2))'), "value should be #NA!" );
+
+     #+END_SRC
+     
+*** ROW
+    
+    Returns the row number of a specified cell.
+    
+    #+BEGIN_EXAMPLE
+      ROW(A1) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      ROW("B10") = 10
+    #+END_EXAMPLE
+    
+*** ROWS
+    
+    Returns the number of rows in a specified array or range.
+    
+    #+BEGIN_EXAMPLE
+      ROWS({1;2;3;4;5;6}) = 6
+    #+END_EXAMPLE
+    
+*** VLOOKUP
+    
+    Lookup a value in a table hortizonally on the first row and retreive a value from the matching row and specified column.
+    
+    VLOOKUP(lookup_value, lookup_reference, index, [exactmatch])
+    
+    #+BEGIN_EXAMPLE
+      VLOOKUP("C", {"A",1;"B",2;"C",3}, 2) = 3
+    #+END_EXAMPLE
+    
+** Date and Time
+   :PROPERTIES:
+   :ID:       date
+   :END:
+*** DATE
+    Returns a serial number that represents a date given a year, month and day.
+
+    DATE(year, month, day)
+     
+     #+BEGIN_EXAMPLE
+      DATE( 2014, 01, 01 ) = 41640
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+      DATE( 2015, 3, 4 ) = 42067  
+     #+END_EXAMPLE
+     
+*** DATEVALUE
+    Returns the serial number with *year*, *month* and *day*.
+     
+    DATEVALUE(year, month, day)
+     
+    or
+     
+    DATEVALUE(date_text)
+     
+     #+BEGIN_EXAMPLE
+      DATEVALUE("01/01/2015") = 42005
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+       DATEVALUE(2015, 1, 1) = 42005
+     #+END_EXAMPLE
+     
+*** DATEDIF
+
+    Calculates the number of days, months or years between two date.
+
+     
+     DATEDIF(start_date, end_date, unit)
+     
+     Arguments:
+     
+     | start_date | The beginning of a period. Dates may be entered as text string, serial number or result of function (e.g. DATEVALUE("2015-01-01") |
+     | end_date   | The end of a period.                                                                                                              |
+     | unit       | The type of information you want to calculate.                                                                                    |
+     
+     Unit Types:
+     
+     | "Y"  | The number of complete years in the period                                                      |
+     | "M"  | The number of complete months in the period                                                     |
+     | "D"  | The number of days in the period                                                                |
+     | "MD" | The difference between the days in the start_date and end_date. The month and year are ignored  |
+     | "YM" | The difference between the months in the start_date and end_date. The days and year are ignored |
+     | "YD" | The difference between the days in the start_date and end_date. The years are ignored           |
+     
+     
+     #+BEGIN_EXAMPLE
+       DATEDIF(DATE(2015, 1, 15), DATE(2015, 1, 16), "D") = 1
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+       DATEDIF("1/15/2015", "1/16/2015", "D") = 1
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+       DATEDIF("1/15/2014", "1/16/2015", "Y") = 1
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+       DATEDIF("12/15/2014", "1/16/2015", "M") = 1
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+       DATEDIF("10/01/2014", "1/31/2015", "M") = 3
+     #+END_EXAMPLE
+     
+*** DAY
+    
+    Returns the day of the month for a date.
+    
+    #+BEGIN_EXAMPLE
+      DAY(DATE(2015, 1, 15)) = 15
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      DAY("01/15/2015") = 15
+    #+END_EXAMPLE
+    
+*** DAYS360
+    
+    Returns the number of days between two dates based on a 360-day year.
+    
+    #+BEGIN_EXAMPLE
+      DAYS360("30-Nov-2012", "1-Dec-2012") = 1
+    #+END_EXAMPLE
+    
+*** EDATE
+    
+    Returns the serial number for a date represented by a string or JSDate object.
+    
+    #+BEGIN_EXAMPLE
+       EDATE(DATE(2015,1,15),1) = DATE(2015,2,15)
+    #+END_EXAMPLE
+    
+*** EOMONTH
+    
+    Returns the last day of the month.
+    
+    #+BEGIN_EXAMPLE
+      EOMONTH( DATE( 2015, 3, 4), 0) = 42094
+    #+END_EXAMPLE
+    
+*** HOUR
+    
+    Accepts a serial number and returns the hour from 0-24.
+    
+    #+BEGIN_EXAMPLE
+      HOUR(0) = 0
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      HOUR(0.5) = 12   
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      HOUR(0.99) = 23   
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      HOUR(29779.75) = 18   
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      HOUR( TIME(16, 20, 0) ) = 16
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      HOUR( TIMEVALUE("11:00PM") ) = 23   
+    #+END_EXAMPLE
+    
+*** ISLEAPYEAR
+    
+    Returns true if the date is a leap year
+    
+    #+BEGIN_EXAMPLE
+      ISLEAPYEAR(DATE(2012,1,1))
+    #+END_EXAMPLE
+    
+*** ISOWEEKNUM                                                     :noexport:
+*** MINUTE
+    
+    Returns the minutes of a time value. The value is 0...59.
+    
+    #+BEGIN_EXAMPLE
+      MINUTE( 0.78125 ) = 45
+    #+END_EXAMPLE
+    
+*** MONTH
+    
+    Returns the month for a date.
+    
+    #+BEGIN_EXAMPLE
+      MONTH(DATEVALUE("1/1/2015")) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      MONTH(DATEVALUE("6/15/2015")) = 6
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      MONTH(DATE(2015, 1, 1)) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      ISERR(MONTH(DATEVALUE("13/15/2015")))
+    #+END_EXAMPLE
+    
+*** NETWORKDAYS                                                    :noexport:
+*** NOW
+    
+    Returns the current date/time.
+    
+    #+BEGIN_EXAMPLE
+      NOW()
+    #+END_EXAMPLE
+    
+*** SECOND
+    
+    Returns the seconds of a time value. The value is 0...59.
+    
+    #+BEGIN_EXAMPLE
+      SECOND(  0.78125 ) = 0
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      31 = SECOND(  42001.78925 )      
+    #+END_EXAMPLE
+    
+*** TIME
+    
+    Returns a decimal representation of time.
+    
+    #+BEGIN_EXAMPLE
+       TIME( 12, 0, 0) = 0.5
+    #+END_EXAMPLE
+    
+*** TIMEVALUE
+    
+    Parses text representation of time into decimal representation.
+    
+    #+BEGIN_EXAMPLE
+       TIMEVALUE("6:00") = 0.25
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       TIMEVALUE("12:00") = 0.5
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       TIMEVALUE("18:00") = 0.75
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       TIMEVALUE("12:00 PM") = 0.5
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      TIMEVALUE("12:00pm") = 0.5
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+       TIMEVALUE("1/1/2000 12:00 PM") = 0.5
+    #+END_EXAMPLE
+    
+*** TODAY
+    
+    Returns the current date.
+    
+    #+BEGIN_EXAMPLE
+      TODAY() = FLOOR(NOW())
+    #+END_EXAMPLE
+    
+*** WEEKDAY
+*** WEEKNUM
+*** WORKDAY
+*** YEAR
+    
+    Returns the year for a date.
+    
+    #+BEGIN_EXAMPLE
+      YEAR(DATE(2014, 01, 01)) = 2014
+    #+END_EXAMPLE
+    
+*** YEARFRAC
+    
+** Text
+   :PROPERTIES:
+   :ID:       text
+   :END:
+*** ASC                                                       :i18n:noexport:
+    
+    For Double-byte character set (DBCS) languages, the function changes full-width (double-byte) characters to half-width (single-byte) characters.
+    
+*** BAHTTEXT                                             :i18n:noexport:
+    
+    Converts a number to Thai text and adds a suffix of "Baht."
+    
+*** CLEAN
+    
+    Removes non-printing characters from ASCII data.
+    
+    #+BEGIN_EXAMPLE
+      =CLEAN(CHAR(9)&"Monthly report"&CHAR(10)) = "Monthly report"
+    #+END_EXAMPLE
+    
+*** CHAR
+    
+    Returns the character for the ASCII code.
+    
+    #+BEGIN_EXAMPLE
+     CHAR(97) = "a"
+    #+END_EXAMPLE  
+    
+*** CODE
+    
+    Returns the code for the ASCII character.
+    
+    #+BEGIN_EXAMPLE
+      CODE("a") = 97
+    #+END_EXAMPLE
+    
+*** CONCATENATE
+    
+    Combines two or more strings into a single value.
+    
+    #+BEGIN_EXAMPLE
+      CONCATENATE("Hello, ", "World") = "Hello, World"
+    #+END_EXAMPLE
+    
+    The short name *CONCAT* refers to the same function.
+    
+    #+BEGIN_EXAMPLE
+      CONCAT("Hello, ", "World") = "Hello, World"
+    #+END_EXAMPLE
+    
+*** DBCS                                                 :i18n:noexport:
+    
+    The function described in this Help topic converts half-width (single-byte) letters within a character string to full-width (double-byte) characters. The name of the function (and the characters that it converts) depends upon your language settings.
+    
+*** DOLLAR
+    
+    Convert a number to formatted currency text with the format code: $#,##0.00_);($#,##0.00).
+    
+    #+BEGIN_EXAMPLE
+      DOLLAR(1420.57) = "$1,420.57&nbsp;"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      DOLLAR(-1420.57) = "($1,420.57)"
+    #+END_EXAMPLE
+    
+*** EXACT
+    
+    Compares two values and return TRUE only if the both are strings and both are identical content with a case-sensitive comparision.
+    
+    #+BEGIN_EXAMPLE
+      EXACT("Hello", "Hello")
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      EXACT(1, 1) = NA()
+    #+END_EXAMPLE
+    
+*** FIND
+    
+    Returns the position of text.
+    
+    #+BEGIN_EXAMPLE
+      FIND("a", "fooabar") = 4
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      FIND("bar", "fooabar") = 5
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      ISERR( FIND("z", "fooabar") )
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      FIND("foo", "fooabar") = 1
+    #+END_EXAMPLE
+    
+*** FIXED
+    
+    Rounds a number to a specified number of decimal places.
+    
+    #+BEGIN_EXAMPLE
+      FIXED(1234.23, 1) = "1234.2"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      FIXED(1234.23, 1, TRUE) = "1,234.2"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      FIXED(123.237, 2, TRUE) = "123.24"
+    #+END_EXAMPLE
+    
+*** LEFT
+    
+    Returns a specified number of character starting from the left side.
+    
+    #+BEGIN_EXAMPLE
+      LEFT("12345", 3) = "123"      
+    #+END_EXAMPLE
+    
+*** LEN
+    
+    Returns the length of a string.
+    
+    #+BEGIN_EXAMPLE
+      LEN("12345") = 5
+    #+END_EXAMPLE
+    
+*** LOWER
+    
+    Sets the text to lower case.
+    
+    #+BEGIN_EXAMPLE
+     LOWER("TeSt") = "test"
+    #+END_EXAMPLE
+    
+*** JOIN
+    
+    Join an array into a string with a specified delimiter.
+    
+    #+BEGIN_EXAMPLE
+      JOIN(",", {1,2,3}, {4;5;6}) = "1,2,3,4,5,6"
+    #+END_EXAMPLE
+    
+*** MID
+    
+    Returns the a section from a text string; based on the specified text, start position and number of characters.
+    
+    #+BEGIN_EXAMPLE
+      MID("12345", 2, 3) = "234"
+    #+END_EXAMPLE
+    
+*** NUMBERVALUE                                               :noexport:
+    
+    Converts text to a number, in a locale-independent way.
+    
+*** PRONETIC                                    :i18n:furigana:noexport:
+*** PROPER
+    
+    Converts a text string to proper case.
+    
+    #+BEGIN_EXAMPLE
+      PROPER("heLLo") = "Hello"
+    #+END_EXAMPLE
+    
+*** REPLACE
+    
+    REPLACE( old_text, start, number_of_chars, new_text )
+    
+    #+BEGIN_EXAMPLE
+      REPLACE("apples", 2, 5, "te") = "ate"   
+    #+END_EXAMPLE
+    
+*** REPT
+    
+    Repeat a string a given number of times.
+    
+    #+BEGIN_EXAMPLE
+      REPT("-*", 3) & "-" = "-*-*-*-"
+    #+END_EXAMPLE
+    
+*** RIGHT
+    
+    Returns a specified number of character starting from the right side.
+    
+    #+BEGIN_EXAMPLE
+      RIGHT("12345", 2) = "45"
+    #+END_EXAMPLE
+    
+*** SEARCH                                                    :noexport:
+    
+    Search for text with wildcards.
+    
+    #+BEGIN_EXAMPLE
+    
+    #+END_EXAMPLE
+    
+    #+BEGIN_SRC js
+      display(workbook.run('FIND("a", "fooabar")')); // should return 4
+      display(workbook.run('FIND("bar", "fooabar")')); // should return 5
+      display(workbook.run('FIND("z", "fooabar")')); // should return !VALUE?
+      display(workbook.run('FIND("foo", "fooabar")')); // should return 1
+    #+END_SRC
+    
+*** SPLIT
+    
+    Split a string by a specified delimiter.
+    
+    #+BEGIN_EXAMPLE
+       LEN(SPLIT("1,2,3", ",")) = 3
+    #+END_EXAMPLE
+    
+*** SUBSTITUTE
+    
+    SUBSTITUTE(text,old_text,new_text,instance_num)
+    
+    #+BEGIN_EXAMPLE
+      SUBSTITUTE("Hello, {name}", "{name}", "Bob") = "Hello, Bob"
+    #+END_EXAMPLE
+    
+*** T
+    
+    Return text or empty string
+    
+    #+BEGIN_EXAMPLE
+    T("123") = "123"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    T(123) = ""
+    #+END_EXAMPLE
+    
+*** TEXT
+    
+    TEXT(rawValue, formatCode[, currentCode]) : Format numbers, currency, date and time. 
+    
+    #+BEGIN_EXAMPLE
+      TEXT(0.5, "hh:mm") = "12:00"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      TEXT(0, "hh:mm AM/PM") = "12:00 AM"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      TEXT(0.5, "hh:mm AM/PM") = "12:00 PM"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      TEXT(1.0, "hh:mm AM/PM") = "12:00 AM"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      TEXT(40000, "yyyy") = "2009"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      TEXT(0.43432, "0.00%") = "43.43%"
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      TEXT(40000, "$0.00") = "$40000.00"
+    #+END_EXAMPLE
+    
+*** TRIM
+    
+    #+BEGIN_EXAMPLE
+    TRIM("    text     ") = "text"
+    #+END_EXAMPLE
+    
+*** UPPER
+    
+    Sets the text to upper case.
+    
+    #+BEGIN_EXAMPLE
+    UPPER("test") = "TEST"
+    #+END_EXAMPLE
+    
+*** VALUE
+    
+    Converts text into a number.
+    
+    #+BEGIN_EXAMPLE
+      =VALUE("1000") = 1000
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      =VALUE("$1000") = 1000
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      =VALUE("$1,000") = 1000
+    #+END_EXAMPLE
+    
+** Math
+   :PROPERTIES:
+   :ID:       math
+   :END:
+*** ABS
+
+    Returns the absolute value of a number.    Calculate absolute value.
+     
+    ABS(number)
+     
+     #+BEGIN_EXAMPLE
+     ABS(-12) = 12
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+     ABS(12) = 12
+     #+END_EXAMPLE
+     
+     #+BEGIN_EXAMPLE
+     ABS(-100) = 100
+     #+END_EXAMPLE
+     
+*** ACOS
+    
+    Returns the Inverse Cosine 
+    
+    #+BEGIN_EXAMPLE
+    ACOS(0.75) = 0.7227342478134157
+    #+END_EXAMPLE
+    
+*** ACOSH
+    
+    Returns the hyperbolic arccosine of a number.
+    
+    #+BEGIN_EXAMPLE
+    ACOSH(2) = 1.3169578969248166
+    #+END_EXAMPLE
+    
+*** ACOT
+    
+    Returns the principal value of the arccotangent, or inverse cotangent, of a number.
+    
+    #+BEGIN_EXAMPLE
+    ACOT(2) = 0.46364760900080615
+    #+END_EXAMPLE
+    
+*** ACOTH
+    
+    Returns the inverse hyperbolic cotangent of a number.
+    
+    #+BEGIN_EXAMPLE
+    ACOTH(6) = 0.16823611831060645
+    #+END_EXAMPLE
+    
+*** ADD
+    
+    Add two factors.
+    
+    #+BEGIN_EXAMPLE
+    ADD(2, 2) = 4
+    #+END_EXAMPLE
+    
+*** AGGREGATE
+    
+    Returns an aggregate in a list or database. 
+    
+    Reference form
+    
+    AGGREGATE(function_num, options, ref1, [ref2], …)
+    
+    Array form
+    
+    AGGREGATE(function_num, options, array, [k])
+    
+    Agreement Functions:
+    
+    | function_num | Function       |
+    |--------------+----------------|
+    |            1 | AVERAGE        |
+    |            2 | COUNT          |
+    |            3 | COUNTA         |
+    |            4 | MAX            |
+    |            5 | MIN            |
+    |            6 | PRODUCT        |
+    |            7 | STDEV.S        |
+    |            8 | STDEV.P        |
+    |            9 | SUM            |
+    |           10 | VAR.S          |
+    |           11 | VAR.P          |
+    |           12 | MEDIAN         |
+    |           13 | MODE.SNGL      |
+    |           14 | LARGE          |
+    |           15 | SMALL          |
+    |           16 | PERCENTILE.INC |
+    |           17 | QUARTILE.INC   |
+    |           18 | PERCENTILE.EXC |
+    |           19 | QUARTILE.EXC   |
+    
+*** ARABIC
+    
+    Converts a Roman numeral to an Arabic numeral.
+    
+*** ASIN
+    
+    Returns the arcsine, or inverse sine, of a number.
+    
+    #+BEGIN_EXAMPLE
+      ASIN(-0.5) = -0.5235987755982988
+    #+END_EXAMPLE
+    
+*** ASINH
+    
+    Returns the hyperbolic arcsine of a number.
+    
+    #+BEGIN_EXAMPLE
+    ASINH(10) = 2.99822295029797
+    #+END_EXAMPLE
+    
+*** ATAN
+    
+    Returns the arctangent (in radians) of a number.
+    
+    #+BEGIN_EXAMPLE
+    ATAN(10) = 1.4711276743037345
+    #+END_EXAMPLE
+    
+*** ATAN2
+    
+    Returns the arctangent of the quotient of its arguments.
+    
+    #+BEGIN_EXAMPLE
+    ATAN2(90, 15) = 1.4056476493802699
+    #+END_EXAMPLE
+    
+*** ATANH
+    
+    Returns the hyperbolic arctangent of a number.
+    
+    #+BEGIN_EXAMPLE
+    ATANH(0.5) = 0.5493061443340549
+    #+END_EXAMPLE
+    
+*** BASE							   
+    
+    Converts a number into a text representation with the given radix (base).
+    
+    #+BEGIN_EXAMPLE
+      BASE(7,2) = "111"
+    #+END_EXAMPLE
+    
+*** CEILING							   
+    
+    Returns number rounded up, away from zero, to the nearest multiple of significance. 
+    
+    #+BEGIN_EXAMPLE
+      CEILING(2.5, 1) = 3
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      CEILING(-2.5, -2) = -4
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      CEILING(-2.5, 2) = -2
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      CEILING(1.5, 0.1) = 1.5
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      CEILING(0.234, 0.01) = 0.24
+    #+END_EXAMPLE
+    
+*** COMBIN							   
+    
+    Returns the number of combinations for a given number of items.
+    
+    #+BEGIN_EXAMPLE
+      COMBIN(8,2) = 28
+    #+END_EXAMPLE
+    
+*** COMBINA							   
+    
+    Returns the number of combinations (with repetitions) for a given number of items.
+    
+*** COS							   
+    
+    Returns the cosine of the given angle.
+    
+    #+BEGIN_EXAMPLE
+      0.5001710745970701=COS(1.047)
+    #+END_EXAMPLE
+    
+*** COSH
+    
+    Returns the hyperbolic cosine of a number.
+    
+    #+BEGIN_EXAMPLE
+      27.308232836016483 = COSH(4)
+    #+END_EXAMPLE
+    
+*** COT							   
+    
+    Return the cotangent of an angle specified in radians.
+    
+    #+BEGIN_EXAMPLE
+      -0.15611995216165922 = COT(30)
+    #+END_EXAMPLE
+    
+*** COTH							   
+    
+    Return the hyperbolic cotangent of a hyperbolic angle.
+    
+    #+BEGIN_EXAMPLE
+      1.0373147207275482 = COTH(2)
+    #+END_EXAMPLE
+    
+*** CSC							   
+    
+    Returns the cosecant of an angle specified in radians.
+    
+    #+BEGIN_EXAMPLE
+      1.5377805615408537 = CSC(15)
+    #+END_EXAMPLE
+    
+*** CSCH							   
+    
+    Return the hyperbolic cosecant of an angle specified in radians.
+    
+    #+BEGIN_EXAMPLE
+      0.46964244059522464=CSCH(1.5)
+    #+END_EXAMPLE
+    
+*** DECIMAL							   
+    
+    Converts a text representation of a number in a given base into a decimal number.
+    
+    #+BEGIN_EXAMPLE
+      255 = DECIMAL("FF",16)
+    #+END_EXAMPLE
+    
+*** DEGREES							   
+    
+    Converts radians into degrees.
+    
+    #+BEGIN_EXAMPLE
+      180 = DEGREES(PI())
+    #+END_EXAMPLE
+    
+*** DIVIDE							   
+    
+    Divide two factors.
+    
+    #+BEGIN_EXAMPLE
+      DIVIDE(10, 5) = 2
+    #+END_EXAMPLE
+    
+*** EQ							   
+    
+    Check equivalence of two factors.
+    
+    #+BEGIN_EXAMPLE
+      EQ(1, +"1") 
+    #+END_EXAMPLE
+    
+*** EVEN							   
+    
+    Returns number rounded up to the nearest even integer. 
+    
+    #+BEGIN_EXAMPLE
+      2=EVEN(1.5)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      4=EVEN(3)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      2=EVEN(2)
+    #+END_EXAMPLE
+    
+    
+    #+BEGIN_EXAMPLE
+      -2=EVEN(-1)
+    #+END_EXAMPLE
+    
+*** EXP							   
+    
+    Returns e raised to the power of number.
+    
+    
+    #+BEGIN_EXAMPLE
+      EXP(10) = 22026.465794806707
+    #+END_EXAMPLE
+    
+*** FACT
+    
+    Returns the factorial of a number.
+    
+    #+BEGIN_EXAMPLE
+      FACT(5) = 120
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      FACT(1.9) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      FACT(0)  = 1
+    #+END_EXAMPLE
+    
+*** FACTDOUBLE						   
+    
+    Returns the double factorial of a number.
+    
+    #+BEGIN_EXAMPLE
+      FACTDOUBLE(6) = 48
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      FACTDOUBLE(7) = 105
+    #+END_EXAMPLE
+    
+*** FLOOR
+    
+    Returns a number rounded down to a multiple of another number.
+    
+    #+BEGIN_EXAMPLE
+    FLOOR(2.5, 1) = 2
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    FLOOR(0.234, 0.01) = 0.23
+    #+END_EXAMPLE
+    
+*** GCD
+    
+    Returns the greatest common divisor of two or more integers. The greatest common divisor is the largest integer that divides both number1 and number2 without a remainder.
+    
+    #+BEGIN_EXAMPLE
+      GCD(5, 2) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      GCD(24, 36) = 12
+    #+END_EXAMPLE
+    
+*** GT							   
+    
+    Returns true when a > b.
+    
+    #+BEGIN_EXAMPLE
+      GT(4, 2)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      NOT(GT(2, 4))
+    #+END_EXAMPLE
+    
+*** GTE							   
+    
+    Returns true when a >= b.
+    
+    #+BEGIN_EXAMPLE
+      GTE(4, 2)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      GTE(2, 2)
+    #+END_EXAMPLE
+    
+*** INT							   
+    
+    Rounds a number down to the nearest integer.
+    
+    #+BEGIN_EXAMPLE
+      INT(8.9) = 8
+    #+END_EXAMPLE
+    
+*** LCM							   
+*** LOG
+    
+    Returns a number rounded down to a multiple of another number.
+    
+    #+BEGIN_EXAMPLE
+    LOG(10) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    LOG(86, 2.7182818) = 4.454347342888286
+    #+END_EXAMPLE
+    
+*** LOG10
+    
+    Returns the base-10 logarithm of a number.
+    
+    #+BEGIN_EXAMPLE
+      LOG10(10) = 1
+    #+END_EXAMPLE
+    
+*** LT
+    
+    Returns true when a < b.
+    
+    #+BEGIN_EXAMPLE
+      LT(2, 4)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      NOT(LT(4, 2))
+    #+END_EXAMPLE
+    
+*** LTE
+    
+    Returns true when a >= b.
+    
+    #+BEGIN_EXAMPLE
+      LTE(2, 4)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      LTE(2, 2)
+    #+END_EXAMPLE
+    
+*** MDETERM
+    
+    Returns the matrix determinant of an array.
+    
+    Look at https://github.com/sloisel/numeric/blob/master/src/numeric.js for ideas to implement.
+    
+*** MINUS
+    
+    Subtract two factors.
+    
+    #+BEGIN_EXAMPLE
+      MINUS(2, 2) = 0
+    #+END_EXAMPLE
+    
+*** MINVERSE
+    
+    Returns the inverse matrix for the matrix stored in an array.
+    
+*** MMULT
+    
+    Returns the matrix product of two arrays. The result is an array with the same number of rows as array1 and the same number of columns as array2.
+    
+*** MOD
+    
+    Returns the remainder when of two factors.
+    
+    #+BEGIN_EXAMPLE
+      MOD(3, 2) = 1
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      MOD(11, 3) = 2
+    #+END_EXAMPLE
+    
+*** MROUND
+    
+    Returns a number rounded to the desired multiple.
+    
+*** MULTINOMIAL
+    
+    Returns the ratio of the factorial of a sum of values to the product of factorials.
+    
+*** MULTIPLY
+    
+    Multiply two factors.
+    
+    #+BEGIN_EXAMPLE
+      MULTIPLY(2, 2) = 4
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      MULTIPLY(4, 2) = 8   
+    #+END_EXAMPLE
+    
+*** ODD
+    
+    Returns number rounded up to the nearest odd integer.
+    
+*** PI
+    
+    Returns the value for the univeral constant PI.
+    
+    #+BEGIN_EXAMPLE
+    PI() = 3.141592653589793
+    #+END_EXAMPLE
+    
+*** POWER
+    
+    Returns the the nth power of a number.
+    
+    #+BEGIN_EXAMPLE
+      POWER(16, 2) = 256
+    #+END_EXAMPLE
+    
+*** PRODUCT
+    
+    Returns the product of the arguments.
+    
+    #+BEGIN_EXAMPLE
+      PRODUCT( 3, 6, 2, 8, 5 ) = 1440
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      PRODUCT( 2, 2, 2, 2 ) = 16
+    #+END_EXAMPLE
+    
+*** QUOTIENT
+    
+    Returns the integer portion of a divisor.
+    
+    #+BEGIN_EXAMPLE
+      QUOTIENT(5, 2) = 2
+    #+END_EXAMPLE
+    
+*** RADIANS
+    
+    Convert degrees to radians.
+    
+    #+BEGIN_EXAMPLE
+      RADIANS(180) = PI()
+    #+END_EXAMPLE
+    
+*** RAND
+    
+    Generate a random number.
+    
+    #+BEGIN_EXAMPLE
+      RAND()
+    #+END_EXAMPLE
+    
+*** RANDBETWEEN
+    
+    Generate a random number between two values.
+    
+    #+BEGIN_EXAMPLE
+      RANDBETWEEN(0, 100)
+    #+END_EXAMPLE
+    
+*** ROMAN
+    
+    Converts an arabic numeral to roman, as text.
+    
+*** ROUND
+    
+    Round number with precision.
+    
+    #+BEGIN_EXAMPLE
+    ROUND(14.20223234, 2) = 14.20
+    #+END_EXAMPLE
+    
+*** ROUNDDOWN
+*** ROUNDUP
+    
+    Rounds a number up, away from 0 (zero).
+    
+    #+BEGIN_EXAMPLE
+      4 = ROUNDUP(3.2,0)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    77 = ROUNDUP(76.9,0)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    3.142 = ROUNDUP(3.14159, 3)
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+    -3.2 = ROUNDUP(-3.14159, 1)
+    #+END_EXAMPLE  
+    
+*** SEC
+*** SECH
+*** SERIESSUM
+*** SIGN
+*** SIN
+*** SQRT
+*** SQRTPI
+*** SUBTOTAL
+*** SUM
+    
+    Calculate SUM of list of numbers.
+    
+    #+BEGIN_EXAMPLE
+    SUM({1,1,1,1}, 10) = 14
+    #+END_EXAMPLE
+    
+** Financial
+   :PROPERTIES:
+   :ID:       financial
+   :END:
+*** ACCRINT
+    
+    Returns the accrued interest for a security that pays periodic interest.
+    
+    #+BEGIN_EXAMPLE
+     183.88888888888889 = ACCRINT("2/2/2012", "3/30/2012", "12/4/2013",0.1,1000,1,0,1)  
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+     183.88888888888889 = ACCRINT(DATE(2012,2,2),DATE(2012,3,20),DATE(2013,12,4),0.1,1000,1,0,1)
+    #+END_EXAMPLE
+    
+    Example: Accrued interest test
+     
+    #+NAME:  AccruedInterestTest
+    |----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Data                                         | Description                                                                                                                                                                |
+    |----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | 3/1/2008                                     | Issue date                                                                                                                                                                 |
+    | 8/31/2008                                    | First interest date                                                                                                                                                        |
+    | 5/1/2008                                     | Settlement date                                                                                                                                                            |
+    | =10.0%                                       | Coupon rate                                                                                                                                                                |
+    | =1000                                        | Par value                                                                                                                                                                  |
+    | =2                                           | Frequency is semiannual (see above)                                                                                                                                        |
+    | =0                                           | 30/360 basis (see above)                                                                                                                                                   |
+    | Formula                                      | Description (Result)                                                                                                                                                       |
+    |----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | =ACCRINT(A2,A3,A4,A5,A6,A7,A8)               | Accrued interest for a treasury bond with the terms above (16.66666667)                                                                                                    |
+    | =ACCRINT(DATE(2008,3,5),A3,A4,A5,A6,A7,A8,0) | Accrued interest with the terms above, except the issue date is March 5, 2008. (15.55555556)                                                                               |
+    | =ACCRINT(DATE(2008,3,5),A3,A4,A5,A6,A7,A8,0) | Accrued interest with the terms above, except the issue date is April 5, 2008, and the accrued interest is calculated from the first_interest to settlement. (7.222222222) |
+    |----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     
+*** ACCRINTM
+    
+    Returns the accrued interest for a security that pays interest at maturity.
+    
+    ACCRINTM(issue, settlement, rate, par, [basis])
+     
+*** AMORLINC
+    
+    Returns the depreciation for each accounting period. This function is provided for the French accounting system. 
+    If an asset is purchased in the middle of the accounting period, the prorated depreciation is taken into account.
+    
+*** COUPDAYS
+    
+    Returns the number of days in the coupon period that contains the settlement date.
+    
+*** COUPDAYSNC
+    
+    Returns the number of days from the settlement date to the next coupon date.
+    
+*** COUPNCD
+    
+    Returns a number that represents the next coupon date after the settlement date.
+    
+*** COUPNUM
+    
+    Returns the number of coupons payable between the settlement date and maturity date, rounded up to the nearest whole coupon.
+    
+*** COUPPCD
+    
+    Returns a number that represents the previous coupon date before the settlement date.
+    
+*** CUMIPMT
+    
+    Returns the cumulative interest paid on a loan between start_period and end_period.
+    
+*** CUMPRINC
+    
+    Returns the cumulative principal paid on a loan between start_period and end_period.
+    
+*** DB
+    
+    Returns the depreciation of an asset for a specified period using the fixed-declining balance method.
+    
+*** DDB
+    
+    Returns the depreciation of an asset for a specified period using the double-declining balance method or some other method you specify.
+    
+*** DISC
+    
+    Returns the discount rate for a security.
+    
+*** DOLLARDE
+*** DOLLARFR
+*** DURATION
+*** EFFECT
+*** FV
+    
+    Returns the future value of an initial sum with a subsequent stream of payments.
+    
+    #+BEGIN_EXAMPLE
+     =FV(7.5%/12, 2*12, -250, -5000, 1) = 12298.46381980343
+    #+END_EXAMPLE
+    
+*** FVSCHEDULE
+*** INTRATE
+*** IRR
+*** IPMT
+    Returns the portion of the periodic payment which is interest for a fixed rate loan or annuity.
+    
+    #+BEGIN_EXAMPLE
+       IPMT(10%, 3, 3, 8000) = -292.4471299093658
+    #+END_EXAMPLE
+    
+*** MDURATION
+*** MIRR
+*** NOMINAL
+*** NPER
+    
+    Returns the number of payment periods for an annuity.
+    
+    #+BEGIN_EXAMPLE
+      NPER(12%/12, -100, -1000, 10000, TRUE) = 59.67386567429457
+    #+END_EXAMPLE
+    
+*** NPV
+    Returns the net present value of an investment with regular cash payments.
+    
+    #+BEGIN_EXAMPLE
+      NPV(10%, -10000, 3000, 4200, 6800) = 1188.4434123352207
+    #+END_EXAMPLE
+    
+*** ODDFPRICE
+*** ODDFYIELD
+*** PMT
+    
+    Returns the payment per period for a fixed rate loan.
+    
+    #+BEGIN_EXAMPLE
+       PMT(8%/12, 10, 10000) = -1037.0320893591606
+    #+END_EXAMPLE
+    
+*** PV
+    
+    Returns the present value of a stream of future payments with a final lump sum.
+    
+    #+BEGIN_EXAMPLE
+      PV(0.075/12, 2*12, 250, 0, 0) = -5555.605845933733
+    #+END_EXAMPLE
+    
+** Stats
+   :PROPERTIES:
+   :ID:       stats
+   :END:
+*** AVEDEV
+*** AVERAGE
+    
+    Compute the average of a range or array
+    
+    #+BEGIN_EXAMPLE
+        AVERAGE({ 1, 2, 3, 4, 5}) = 3
+    #+END_EXAMPLE
+    
+*** AVERAGEA
+*** AVERAGEIF
+*** AVERAGEIFS
+*** CORREL
+*** COUNT
+*** COUNTA
+*** COUNTIN
+*** COUNTBLANK
+*** COUNTIF
+    
+    Return count of fields that match a criterion
+    
+    #+BEGIN_EXAMPLE
+      COUNTIF({ "apples", "bananas", "grapes", "apples" }, "apples") = 2
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      COUNTIF({ 1,1,2,3,5 }, 1) = 2
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      COUNTIF({ 1,1,2,3,5 }, ">1") = 3
+    #+END_EXAMPLE
+    
+*** COUNTIFS
+*** COUNTUNIQUE
+*** DEVSQ
+*** FISHER
+*** FISHERINV
+*** FORECAST
+*** FREQUENCY
+*** GAMMALN
+*** GEOMEAN
+*** GROWTH
+*** HARMEAN
+*** INTERCEPT
+*** KURT
+*** LARGE
+*** LINEST
+*** LOGEST
+*** MAX
+    
+    Returns the maximum of a list of arguments, ignoring text entries
+    
+    #+BEGIN_EXAMPLE
+        MAX({1,2,30,4}, 10) = 30
+    #+END_EXAMPLE
+    
+*** MAXA
+*** MEDIAN
+*** MIN
+    Returns the minimum of a list of arguments, ignoring text entries
+    #+BEGIN_EXAMPLE
+        MIN({6,3,"foo",3,4}, 1) = 1
+    #+END_EXAMPLE
+    
+*** MINA
+*** PEARSON
+*** PERMUT
+*** PERMUTATIONA
+*** PHI
+*** PROB
+*** RSQ
+*** SKEW
+*** SLOPE
+*** SMALL
+*** STANDARDIZE
+*** STDEVA
+*** STDEVPA
+*** STEYX
+*** TRANSPOSE
+*** TREND
+*** TRIMMEAN
+*** VARA
+*** VARPA
+** Engineering
+   :PROPERTIES:
+   :ID:       eng
+   :END:
+*** BESSELI
+    
+    #+BEGIN_EXAMPLE
+      BESSELI(1.5, 1) = 0.981666428577908
+    #+END_EXAMPLE
+    
+*** BESSELJ
+    
+    #+BEGIN_EXAMPLE
+      BESSELJ(1.9, 2) = 0.329925727692387
+    #+END_EXAMPLE
+    
+*** BESSELK
+*** BESSELY
+*** BIN2DEC
+    
+    Convert a binary number to a decimal number with a maximum of 10 characters (bits). 
+    
+    #+BEGIN_EXAMPLE
+      BIN2DEC(1111) = 15
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      BIN2DEC("1111") = 15
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      BIN2DEC("1011111111") = -257
+    #+END_EXAMPLE
+    
+    #+BEGIN_EXAMPLE
+      BIN2DEC("1111111111") = -1
+    #+END_EXAMPLE
+    
+*** BIN2HEX
+*** BIN2OCT
+*** BITAND
+*** BITLSHIFT
+*** BITOR
+*** BITRSHIFT
+*** BITXOR
+*** COMPLEX
+*** CONVERT
+*** DEC2BIN
+*** DEC2HEX
+*** DEC2OCT
+*** DELTA
+*** ERF
+*** ERFC
+*** GESTEP
+*** HEX2BIN
+*** HEX2DEC
+*** HEX2OCT
+*** IMABS
+*** IMAGINARY
+*** IMARGUMENT
+*** IMCONJUGATE
+*** IMCOS
+*** IMCOSH
+*** IMCOT
+*** IMDIV
+*** IMEXP
+*** IMLN
+*** IMLOG19
+*** IMLOG2
+*** IMPOWER
+*** IMPRODUCT
+*** IMREAL
+*** IMSEC
+*** IMSECH
+*** IMSIN
+*** IMSINH
+*** IMSQRT
+*** IMCSC
+*** IMCSCH
+*** IMSUB
+*** IMTAN
+*** OCT2BIN
+*** OCT2DEC
+*** OCT2HEX
+* Implementation Status
+  
+  The overall status.
+  
+  |---+----------------------+-----------+-------+--------+-----+----------+--------+------|
+  |   | Category             | Completed | Total | Github | NPM | CircleCI | % Done | % CI |
+  |---+----------------------+-----------+-------+--------+-----+----------+--------+------|
+  | # | Logical              |         9 |     9 |      9 |   9 |        1 | 100.0% |      |
+  | # | Date and Time        |        17 |    23 |      0 |   0 |        0 |  74.0% |      |
+  | # | Engineering          |         2 |    51 |        |     |          |   4.0% |      |
+  | # | Financial            |         8 |    31 |        |     |          |  26.0% |      |
+  | # | Information          |        22 |    23 |        |     |          |  96.0% |      |
+  | # | Lookup and Reference |        12 |    12 |        |     |          | 100.0% |      |
+  | # | Math                 |        44 |    69 |        |     |          |  64.0% |      |
+  | # | Stats                |         5 |    54 |        |     |          |  10.0% |      |
+  | # | Text                 |        24 |    29 |        |     |          |  83.0% |      |
+  |---+----------------------+-----------+-------+--------+-----+----------+--------+------|
+  | # |                      |       124 |   227 |        |     |          |  55.0% |      |
+  |---+----------------------+-----------+-------+--------+-----+----------+--------+------|
+  #+TBLFM: @3$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@4$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@5$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@6$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@2$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@7$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@8$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@9$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@10$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@11$3=vsum(@5..10)::@11$4=vsum(@5..10)::@11$8='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")
+  
+** Logical
+   
+   #+BEGIN: propview :id "logical" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Logical")))
+   | ITEM      | published | github | npm | circleci |
+   |-----------+-----------+--------+-----+----------|
+   | "AND"     | "y"       | "y"    | "y" |        0 |
+   | "OR"      | "y"       | "y"    | "y" |        0 |
+   | "NOT"     | "y"       | "y"    | "y" |        0 |
+   | "IF"      | "y"       | "y"    | "y" |        0 |
+   | "IFERROR" | "y"       | "y"    | "y" |        0 |
+   | "IFNA"    | "y"       | "y"    | "y" |        0 |
+   | "SWITCH"  | "y"       | "y"    | "y" |        0 |
+   | "CHOOSE"  | "y"       | "y"    | "y" |      "y" |
+   | "XOR"     | "y"       | "y"    | "y" |        0 |
+   |-----------+-----------+--------+-----+----------|
+   |           |           |        |     |          |
+   #+END:
+   
+** Information
+   
+   #+BEGIN: propview :id "information" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Information")))
+   | ITEM           | published | github | npm | circleci |
+   |----------------+-----------+--------+-----+----------|
+   | "CELL"         |         0 |      0 |   0 |        0 |
+   | "DEPENDENTS"   |         0 |      0 |   0 |        0 |
+   | "INFO"    |         0 |      0 |   0 |        0 |
+   | "ISARRAY"      |         0 |      0 |   0 |        0 |
+   | "ISBLANK"      |         0 |      0 |   0 |        0 |
+   | "ISEMAIL" |         0 |      0 |   0 |        0 |
+   | "ISERR"        |         0 |      0 |   0 |        0 |
+   | "ISERROR"      |         0 |      0 |   0 |        0 |
+   | "ISEVEN"       |         0 |      0 |   0 |        0 |
+   | "ISFORMULA"    |         0 |      0 |   0 |        0 |
+   | "ISLOGICAL"    |         0 |      0 |   0 |        0 |
+   | "ISNA"         |         0 |      0 |   0 |        0 |
+   | "ISNONTEXT"    |         0 |      0 |   0 |        0 |
+   | "ISNUMBER"     |         0 |      0 |   0 |        0 |
+   | "ISODD"        |         0 |      0 |   0 |        0 |
+   | "ISTEXT"       |         0 |      0 |   0 |        0 |
+   | "ISRANGE"      |         0 |      0 |   0 |        0 |
+   | "ISREF"        |         0 |      0 |   0 |        0 |
+   | "ISURL"   |         0 |      0 |   0 |        0 |
+   | "N"            |         0 |      0 |   0 |        0 |
+   | "NA"           |         0 |      0 |   0 |        0 |
+   | "PRECEDENTS"   |         0 |      0 |   0 |        0 |
+   | "SHEET"        |         0 |      0 |   0 |        0 |
+   | "SHEETS"       |         0 |      0 |   0 |        0 |
+   | "TYPE"         |         0 |      0 |   0 |        0 |
+   |----------------+-----------+--------+-----+----------|
+   |                |           |        |     |          |
+   #+END:
+   
+** Lookup and Reference
+   
+   #+BEGIN: propview :id "lookup" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Lookup and Reference")))
+   | ITEM       | published | github | npm | circleci |
+   |------------+-----------+--------+-----+----------|
+   | "ADDRESS"  |         0 |      0 |   0 |        0 |
+   | "COLUMN"   |         0 |      0 |   0 |        0 |
+   | "COLUMNS"  |         0 |      0 |   0 |        0 |
+   | "HLOOKUP"  |         0 |      0 |   0 |        0 |
+   | "INDEX"    |         0 |      0 |   0 |        0 |
+   | "INDIRECT" |         0 |      0 |   0 |        0 |
+   | "LOOKUP"   |         0 |      0 |   0 |        0 |
+   | "MATCH"    |         0 |      0 |   0 |        0 |
+   | "OFFSET"   |         0 |      0 |   0 |        0 |
+   | "Syntax"   |         0 |      0 |   0 |        0 |
+   | "Examples" |         0 |      0 |   0 |        0 |
+   | "ROW"      |         0 |      0 |   0 |        0 |
+   | "ROWS"     |         0 |      0 |   0 |        0 |
+   | "VLOOKUP"  |         0 |      0 |   0 |        0 |
+   | "Syntax"   |         0 |      0 |   0 |        0 |
+   | "Examples" |         0 |      0 |   0 |        0 |
+   |------------+-----------+--------+-----+----------|
+   |            |           |        |     |          |
+   #+END:
+   
+** Date and Time
+   
+   #+BEGIN: propview :id "date" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Date and Time")))
+   | ITEM          | published | github | npm | circleci |
+   |---------------+-----------+--------+-----+----------|
+   | "DATE"        |         0 |      0 |   0 |        0 |
+   | "DATEVALUE"   |         0 |      0 |   0 |        0 |
+   | "DATEDIF"     |         0 |      0 |   0 |        0 |
+   | "DAY"         |         0 |      0 |   0 |        0 |
+   | "DAYS360"     |         0 |      0 |   0 |        0 |
+   | "EDATE"       |         0 |      0 |   0 |        0 |
+   | "EOMONTH"     |         0 |      0 |   0 |        0 |
+   | "HOUR"        |         0 |      0 |   0 |        0 |
+   | "ISLEAPYEAR"  |         0 |      0 |   0 |        0 |
+   | "ISOWEEKNUM"  |         0 |      0 |   0 |        0 |
+   | "MINUTE"      |         0 |      0 |   0 |        0 |
+   | "MONTH"       |         0 |      0 |   0 |        0 |
+   | "NETWORKDAYS" |         0 |      0 |   0 |        0 |
+   | "NOW"         |         0 |      0 |   0 |        0 |
+   | "SECOND"      |         0 |      0 |   0 |        0 |
+   | "TIME"        |         0 |      0 |   0 |        0 |
+   | "TIMEVALUE"   |         0 |      0 |   0 |        0 |
+   | "TODAY"       |         0 |      0 |   0 |        0 |
+   | "WEEKDAY"     |         0 |      0 |   0 |        0 |
+   | "WEEKNUM"     |         0 |      0 |   0 |        0 |
+   | "WORKDAY"     |         0 |      0 |   0 |        0 |
+   | "YEAR"        |         0 |      0 |   0 |        0 |
+   | "YEARFRAC"    |         0 |      0 |   0 |        0 |
+   |---------------+-----------+--------+-----+----------|
+   |               |           |        |     |          |
+   #+END:
+   
+** Text
+   
+   #+BEGIN: propview :id "text" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Text")))
+   | ITEM          | published | github | npm | circleci |
+   |---------------+-----------+--------+-----+----------|
+   | "ASC"         |         0 |      0 |   0 |        0 |
+   | "BAHTTEXT"    |         0 |      0 |   0 |        0 |
+   | "CLEAN"       |         0 |      0 |   0 |        0 |
+   | "CHAR"        |         0 |      0 |   0 |        0 |
+   | "CODE"        |         0 |      0 |   0 |        0 |
+   | "CONCATENATE" |         0 |      0 |   0 |        0 |
+   | "DBCS"        |         0 |      0 |   0 |        0 |
+   | "DOLLAR"      |         0 |      0 |   0 |        0 |
+   | "EXACT"       |         0 |      0 |   0 |        0 |
+   | "FIND"        |         0 |      0 |   0 |        0 |
+   | "FIXED"       |         0 |      0 |   0 |        0 |
+   | "LEFT"        |         0 |      0 |   0 |        0 |
+   | "LEN"         |         0 |      0 |   0 |        0 |
+   | "LOWER"       |         0 |      0 |   0 |        0 |
+   | "JOIN"        |         0 |      0 |   0 |        0 |
+   | "MID"         |         0 |      0 |   0 |        0 |
+   | "NUMBERVALUE" |         0 |      0 |   0 |        0 |
+   | "PRONETIC"    |         0 |      0 |   0 |        0 |
+   | "PROPER"      |         0 |      0 |   0 |        0 |
+   | "REPLACE"     |         0 |      0 |   0 |        0 |
+   | "REPT"        |         0 |      0 |   0 |        0 |
+   | "RIGHT"       |         0 |      0 |   0 |        0 |
+   | "SEARCH"      |         0 |      0 |   0 |        0 |
+   | "SPLIT"       |         0 |      0 |   0 |        0 |
+   | "SUBSTITUTE"  |         0 |      0 |   0 |        0 |
+   | "T"           |         0 |      0 |   0 |        0 |
+   | "TEXT"        |         0 |      0 |   0 |        0 |
+   | "TRIM"        |         0 |      0 |   0 |        0 |
+   | "UPPER"       |         0 |      0 |   0 |        0 |
+   | "VALUE"       |         0 |      0 |   0 |        0 |
+   |---------------+-----------+--------+-----+----------|
+   |               |           |        |     |          |
+   #+END:
+   
+** Math
+   
+   #+BEGIN: propview :id "math" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Math")))
+   | ITEM          | published | github | npm | circleci |
+   |---------------+-----------+--------+-----+----------|
+   | "ABS"         |         0 |      0 |   0 |        0 |
+   | "ACOS"        |         0 |      0 |   0 |        0 |
+   | "ACOSH"       |         0 |      0 |   0 |        0 |
+   | "ACOT"        |         0 |      0 |   0 |        0 |
+   | "ACOTH"       |         0 |      0 |   0 |        0 |
+   | "ADD"         |         0 |      0 |   0 |        0 |
+   | "AGGREGATE"   |         0 |      0 |   0 |        0 |
+   | "ARABIC"      |         0 |      0 |   0 |        0 |
+   | "ASIN"        |         0 |      0 |   0 |        0 |
+   | "ASINH"       |         0 |      0 |   0 |        0 |
+   | "ATAN"        |         0 |      0 |   0 |        0 |
+   | "ATAN2"       |         0 |      0 |   0 |        0 |
+   | "ATANH"       |         0 |      0 |   0 |        0 |
+   | "BASE"        |         0 |      0 |   0 |        0 |
+   | "CEILING"     |         0 |      0 |   0 |        0 |
+   | "COMBIN"      |         0 |      0 |   0 |        0 |
+   | "COMBINA"     |         0 |      0 |   0 |        0 |
+   | "COS"         |         0 |      0 |   0 |        0 |
+   | "COSH"        |         0 |      0 |   0 |        0 |
+   | "COT"         |         0 |      0 |   0 |        0 |
+   | "COTH"        |         0 |      0 |   0 |        0 |
+   | "CSC"         |         0 |      0 |   0 |        0 |
+   | "CSCH"        |         0 |      0 |   0 |        0 |
+   | "DECIMAL"     |         0 |      0 |   0 |        0 |
+   | "DEGREES"     |         0 |      0 |   0 |        0 |
+   | "DIVIDE"      |         0 |      0 |   0 |        0 |
+   | "EQ"          |         0 |      0 |   0 |        0 |
+   | "EVEN"        |         0 |      0 |   0 |        0 |
+   | "EXP"         |         0 |      0 |   0 |        0 |
+   | "FACT"        |         0 |      0 |   0 |        0 |
+   | "FACTDOUBLE"  |         0 |      0 |   0 |        0 |
+   | "FLOOR"       |         0 |      0 |   0 |        0 |
+   | "GCD"         |         0 |      0 |   0 |        0 |
+   | "GT"          |         0 |      0 |   0 |        0 |
+   | "GTE"         |         0 |      0 |   0 |        0 |
+   | "INT"         |         0 |      0 |   0 |        0 |
+   | "LCM"         |         0 |      0 |   0 |        0 |
+   | "LOG"         |         0 |      0 |   0 |        0 |
+   | "LOG10"       |         0 |      0 |   0 |        0 |
+   | "LT"          |         0 |      0 |   0 |        0 |
+   | "LTE"         |         0 |      0 |   0 |        0 |
+   | "MDETERM"     |         0 |      0 |   0 |        0 |
+   | "MINUS"       |         0 |      0 |   0 |        0 |
+   | "MINVERSE"    |         0 |      0 |   0 |        0 |
+   | "MMULT"       |         0 |      0 |   0 |        0 |
+   | "MOD"         |         0 |      0 |   0 |        0 |
+   | "MROUND"      |         0 |      0 |   0 |        0 |
+   | "MULTINOMIAL" |         0 |      0 |   0 |        0 |
+   | "MULTIPLY"    |         0 |      0 |   0 |        0 |
+   | "ODD"         |         0 |      0 |   0 |        0 |
+   | "PI"          |         0 |      0 |   0 |        0 |
+   | "POWER"       |         0 |      0 |   0 |        0 |
+   | "PRODUCT"     |         0 |      0 |   0 |        0 |
+   | "QUOTIENT"    |         0 |      0 |   0 |        0 |
+   | "RADIANS"     |         0 |      0 |   0 |        0 |
+   | "RAND"        |         0 |      0 |   0 |        0 |
+   | "RANDBETWEEN" |         0 |      0 |   0 |        0 |
+   | "ROMAN"       |         0 |      0 |   0 |        0 |
+   | "ROUND"       |         0 |      0 |   0 |        0 |
+   | "ROUNDDOWN"   |         0 |      0 |   0 |        0 |
+   | "ROUNDUP"     |         0 |      0 |   0 |        0 |
+   | "SEC"         |         0 |      0 |   0 |        0 |
+   | "SECH"        |         0 |      0 |   0 |        0 |
+   | "SERIESSUM"   |         0 |      0 |   0 |        0 |
+   | "SIGN"        |         0 |      0 |   0 |        0 |
+   | "SIN"         |         0 |      0 |   0 |        0 |
+   | "SQRT"        |         0 |      0 |   0 |        0 |
+   | "SQRTPI"      |         0 |      0 |   0 |        0 |
+   | "SUBTOTAL"    |         0 |      0 |   0 |        0 |
+   | "SUM"         |         0 |      0 |   0 |        0 |
+   |---------------+-----------+--------+-----+----------|
+   |               |           |        |     |          |
+   #+END:
+   
+** Financial
+   
+   #+BEGIN: propview :id "financial" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Financial")))
+   | ITEM         | published | github | npm | circleci |
+   |--------------+-----------+--------+-----+----------|
+   | "ACCRINT"    |         0 |      0 |   0 |        0 |
+   | "ACCRINTM"   |         0 |      0 |   0 |        0 |
+   | "AMORLINC"   |         0 |      0 |   0 |        0 |
+   | "COUPDAYS"   |         0 |      0 |   0 |        0 |
+   | "COUPDAYSNC" |         0 |      0 |   0 |        0 |
+   | "COUPNCD"    |         0 |      0 |   0 |        0 |
+   | "COUPNUM"    |         0 |      0 |   0 |        0 |
+   | "COUPPCD"    |         0 |      0 |   0 |        0 |
+   | "CUMIPMT"    |         0 |      0 |   0 |        0 |
+   | "CUMPRINC"   |         0 |      0 |   0 |        0 |
+   | "DB"         |         0 |      0 |   0 |        0 |
+   | "DDB"        |         0 |      0 |   0 |        0 |
+   | "DISC"       |         0 |      0 |   0 |        0 |
+   | "DOLLARDE"   |         0 |      0 |   0 |        0 |
+   | "DOLLARFR"   |         0 |      0 |   0 |        0 |
+   | "DURATION"   |         0 |      0 |   0 |        0 |
+   | "EFFECT"     |         0 |      0 |   0 |        0 |
+   | "FV"         |         0 |      0 |   0 |        0 |
+   | "FVSCHEDULE" |         0 |      0 |   0 |        0 |
+   | "INTRATE"    |         0 |      0 |   0 |        0 |
+   | "IRR"        |         0 |      0 |   0 |        0 |
+   | "IPMT"       |         0 |      0 |   0 |        0 |
+   | "MDURATION"  |         0 |      0 |   0 |        0 |
+   | "MIRR"       |         0 |      0 |   0 |        0 |
+   | "NOMINAL"    |         0 |      0 |   0 |        0 |
+   | "NPER"       |         0 |      0 |   0 |        0 |
+   | "NPV"        |         0 |      0 |   0 |        0 |
+   | "ODDFPRICE"  |         0 |      0 |   0 |        0 |
+   | "ODDFYIELD"  |         0 |      0 |   0 |        0 |
+   | "PMT"        |         0 |      0 |   0 |        0 |
+   | "PV"         |         0 |      0 |   0 |        0 |
+   |--------------+-----------+--------+-----+----------|
+   |              |           |        |     |          |
+   #+END:
+   
+** Stats
+   
+   #+BEGIN: propview :id "stats" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Stats")))
+   | ITEM           | published | github | npm | circleci |
+   |----------------+-----------+--------+-----+----------|
+   | "AVEDEV"       |         0 |      0 |   0 |        0 |
+   | "AVERAGE"      |         0 |      0 |   0 |        0 |
+   | "AVERAGEA"     |         0 |      0 |   0 |        0 |
+   | "AVERAGEIF"    |         0 |      0 |   0 |        0 |
+   | "AVERAGEIFS"   |         0 |      0 |   0 |        0 |
+   | "CORREL"       |         0 |      0 |   0 |        0 |
+   | "COUNT"        |         0 |      0 |   0 |        0 |
+   | "COUNTA"       |         0 |      0 |   0 |        0 |
+   | "COUNTIN"      |         0 |      0 |   0 |        0 |
+   | "COUNTBLANK"   |         0 |      0 |   0 |        0 |
+   | "COUNTIF"      |         0 |      0 |   0 |        0 |
+   | "COUNTIFS"     |         0 |      0 |   0 |        0 |
+   | "COUNTUNIQUE"  |         0 |      0 |   0 |        0 |
+   | "DEVSQ"        |         0 |      0 |   0 |        0 |
+   | "FISHER"       |         0 |      0 |   0 |        0 |
+   | "FISHERINV"    |         0 |      0 |   0 |        0 |
+   | "FORECAST"     |         0 |      0 |   0 |        0 |
+   | "FREQUENCY"    |         0 |      0 |   0 |        0 |
+   | "GAMMALN"      |         0 |      0 |   0 |        0 |
+   | "GEOMEAN"      |         0 |      0 |   0 |        0 |
+   | "GROWTH"       |         0 |      0 |   0 |        0 |
+   | "HARMEAN"      |         0 |      0 |   0 |        0 |
+   | "INTERCEPT"    |         0 |      0 |   0 |        0 |
+   | "KURT"         |         0 |      0 |   0 |        0 |
+   | "LARGE"        |         0 |      0 |   0 |        0 |
+   | "LINEST"       |         0 |      0 |   0 |        0 |
+   | "LOGEST"       |         0 |      0 |   0 |        0 |
+   | "MAX"          |         0 |      0 |   0 |        0 |
+   | "MAXA"         |         0 |      0 |   0 |        0 |
+   | "MEDIAN"       |         0 |      0 |   0 |        0 |
+   | "MIN"          |         0 |      0 |   0 |        0 |
+   | "MINA"         |         0 |      0 |   0 |        0 |
+   | "PEARSON"      |         0 |      0 |   0 |        0 |
+   | "PERMUT"       |         0 |      0 |   0 |        0 |
+   | "PERMUTATIONA" |         0 |      0 |   0 |        0 |
+   | "PHI"          |         0 |      0 |   0 |        0 |
+   | "PROB"         |         0 |      0 |   0 |        0 |
+   | "RSQ"          |         0 |      0 |   0 |        0 |
+   | "SKEW"         |         0 |      0 |   0 |        0 |
+   | "SLOPE"        |         0 |      0 |   0 |        0 |
+   | "SMALL"        |         0 |      0 |   0 |        0 |
+   | "STANDARDIZE"  |         0 |      0 |   0 |        0 |
+   | "STDEVA"       |         0 |      0 |   0 |        0 |
+   | "STDEVPA"      |         0 |      0 |   0 |        0 |
+   | "STEYX"        |         0 |      0 |   0 |        0 |
+   | "TRANSPOSE"    |         0 |      0 |   0 |        0 |
+   | "TREND"        |         0 |      0 |   0 |        0 |
+   | "TRIMMEAN"     |         0 |      0 |   0 |        0 |
+   | "VARA"         |         0 |      0 |   0 |        0 |
+   | "VARPA"        |         0 |      0 |   0 |        0 |
+   |----------------+-----------+--------+-----+----------|
+   |                |           |        |     |          |
+   #+END:
+   
+** Engineering
+   
+   #+BEGIN: propview :id "eng" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Engineering")))
+   | ITEM          | published | github | npm | circleci |
+   |---------------+-----------+--------+-----+----------|
+   | "BESSELI"     |         0 |      0 |   0 |        0 |
+   | "BESSELJ"     |         0 |      0 |   0 |        0 |
+   | "BESSELK"     |         0 |      0 |   0 |        0 |
+   | "BESSELY"     |         0 |      0 |   0 |        0 |
+   | "BIN2DEC"     |         0 |      0 |   0 |        0 |
+   | "BIN2HEX"     |         0 |      0 |   0 |        0 |
+   | "BIN2OCT"     |         0 |      0 |   0 |        0 |
+   | "BITAND"      |         0 |      0 |   0 |        0 |
+   | "BITLSHIFT"   |         0 |      0 |   0 |        0 |
+   | "BITOR"       |         0 |      0 |   0 |        0 |
+   | "BITRSHIFT"   |         0 |      0 |   0 |        0 |
+   | "BITXOR"      |         0 |      0 |   0 |        0 |
+   | "COMPLEX"     |         0 |      0 |   0 |        0 |
+   | "CONVERT"     |         0 |      0 |   0 |        0 |
+   | "DEC2BIN"     |         0 |      0 |   0 |        0 |
+   | "DEC2HEX"     |         0 |      0 |   0 |        0 |
+   | "DEC2OCT"     |         0 |      0 |   0 |        0 |
+   | "DELTA"       |         0 |      0 |   0 |        0 |
+   | "ERF"         |         0 |      0 |   0 |        0 |
+   | "ERFC"        |         0 |      0 |   0 |        0 |
+   | "GESTEP"      |         0 |      0 |   0 |        0 |
+   | "HEX2BIN"     |         0 |      0 |   0 |        0 |
+   | "HEX2DEC"     |         0 |      0 |   0 |        0 |
+   | "HEX2OCT"     |         0 |      0 |   0 |        0 |
+   | "IMABS"       |         0 |      0 |   0 |        0 |
+   | "IMAGINARY"   |         0 |      0 |   0 |        0 |
+   | "IMARGUMENT"  |         0 |      0 |   0 |        0 |
+   | "IMCONJUGATE" |         0 |      0 |   0 |        0 |
+   | "IMCOS"       |         0 |      0 |   0 |        0 |
+   | "IMCOSH"      |         0 |      0 |   0 |        0 |
+   | "IMCOT"       |         0 |      0 |   0 |        0 |
+   | "IMDIV"       |         0 |      0 |   0 |        0 |
+   | "IMEXP"       |         0 |      0 |   0 |        0 |
+   | "IMLN"        |         0 |      0 |   0 |        0 |
+   | "IMLOG19"     |         0 |      0 |   0 |        0 |
+   | "IMLOG2"      |         0 |      0 |   0 |        0 |
+   | "IMPOWER"     |         0 |      0 |   0 |        0 |
+   | "IMPRODUCT"   |         0 |      0 |   0 |        0 |
+   | "IMREAL"      |         0 |      0 |   0 |        0 |
+   | "IMSEC"       |         0 |      0 |   0 |        0 |
+   | "IMSECH"      |         0 |      0 |   0 |        0 |
+   | "IMSIN"       |         0 |      0 |   0 |        0 |
+   | "IMSINH"      |         0 |      0 |   0 |        0 |
+   | "IMSQRT"      |         0 |      0 |   0 |        0 |
+   | "IMCSC"       |         0 |      0 |   0 |        0 |
+   | "IMCSCH"      |         0 |      0 |   0 |        0 |
+   | "IMSUB"       |         0 |      0 |   0 |        0 |
+   | "IMTAN"       |         0 |      0 |   0 |        0 |
+   | "OCT2BIN"     |         0 |      0 |   0 |        0 |
+   | "OCT2DEC"     |         0 |      0 |   0 |        0 |
+   | "OCT2HEX"     |         0 |      0 |   0 |        0 |
+   |---------------+-----------+--------+-----+----------|
+   |               |           |        |     |          |
+   #+END:
+   
