@@ -2,6 +2,8 @@
 
 Formula pages is a project to develop high quality building blocks compatible with spreadsheets.
 
+Currently, the project provides a spreadsheet formula language parser/compiler and a small set of functions as UMD modules.
+
 These building blocks are published on NPM for node and are compatible with tools like webpack or browserify.
 
 The libarries are packaged as UMD modules but they will clutter global namespace if you don't bundle your code with webpack or similar.
