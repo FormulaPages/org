@@ -37,7 +37,25 @@ textFormatter( 100, "$#,###.##" ) // => $100.00
 
 There are a lot of useful functions today and many more will be added in the future.
 
-* Status  
+* Status 
+
+  |---+----------------------+-----------+-------+---------+--------+-----+----------|
+  |   | Category             | Completed | Total | % Coded | Github | NPM | CircleCI |
+  |---+----------------------+-----------+-------+---------+--------+-----+----------|
+  | # | Logical              |         9 |     9 |  100.0% |      9 |   9 |        1 |
+  | # | Date and Time        |        17 |    23 |   74.0% |      0 |   0 |        0 |
+  | # | Engineering          |         2 |    51 |    4.0% |      0 |   0 |        0 |
+  | # | Financial            |         8 |    31 |   26.0% |      0 |   0 |        0 |
+  | # | Information          |        22 |    23 |   96.0% |     11 |  11 |        0 |
+  | # | Lookup and Reference |        12 |    12 |  100.0% |      3 |   3 |        0 |
+  | # | Math                 |        44 |    69 |   64.0% |     11 |  11 |        0 |
+  | # | Stats                |         5 |    54 |   10.0% |      0 |   0 |        0 |
+  | # | Text                 |        24 |    29 |   83.0% |      0 |   0 |        0 |
+  |---+----------------------+-----------+-------+---------+--------+-----+----------|
+  | # | Total                |       115 |   218 |   53.0% |        |     |          |
+  |---+----------------------+-----------+-------+---------+--------+-----+----------|
+  #+TBLFM: @3$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@4$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@5$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@6$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@2$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@7$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@8$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@9$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@10$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")::@11$3=vsum(@5..10)::@11$4=vsum(@5..10)::@11$5='(concat (number-to-string (fceiling (* 100 (/ (string-to-number (concat $3 ".0")) (string-to-number $4))))) "%")
+
 ** Logical
    
    #+BEGIN: propview :id logical :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Logical)))
