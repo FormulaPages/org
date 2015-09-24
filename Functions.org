@@ -69,13 +69,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns TRUE if all arguments evaluate to TRUE; otherwise returns FALSE.
    
-   #+BEGIN_EXAMPLE
-    AND(TRUE, FALSE) = FALSE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   AND(1, TRUE) = TRUE
-   #+END_EXAMPLE
+   
+   
    
 ** DONE OR
    :PROPERTIES: 
@@ -86,13 +82,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns TRUE if any argument is true.
    
-   #+BEGIN_EXAMPLE
-   OR(TRUE, FALSE)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   OR(FALSE, FALSE) = FALSE
-   #+END_EXAMPLE
+   
+   
    
 ** DONE NOT
    :PROPERTIES: 
@@ -103,13 +95,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns TRUE when FALSE and FALSE when TRUE;
    
-   #+BEGIN_EXAMPLE
-   NOT(FALSE)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   NOT(TRUE) = FALSE
-   #+END_EXAMPLE
+   
+   
    
 ** DONE IF
    :PROPERTIES: 
@@ -120,9 +108,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns true_value if a condition you specify evaluates to TRUE and false_value if it evaluates to FALSE.
    
-   #+BEGIN_EXAMPLE
-   IF(1,"Yes", "No") = "Yes"
-   #+END_EXAMPLE
+   
    
 ** DONE IFERROR
    :PROPERTIES: 
@@ -134,9 +120,7 @@ There are a lot of useful functions today and many more will be added in the fut
    Returns a value you specify if a formula evaluates to an error; otherwise, 
    returns the result of the formula.
    
-   #+BEGIN_EXAMPLE
-   IFERROR(1/0, "Error") = "Error"
-   #+END_EXAMPLE
+   
    
 ** DONE IFNA
    :PROPERTIES: 
@@ -147,9 +131,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the value you specify if the formula returns the #N/A error value; otherwise returns the result of the formula.
    
-   #+BEGIN_EXAMPLE
-   =IFNA(NA(), TRUE, FALSE)
-   #+END_EXAMPLE
+   
    
 ** DONE SWITCH
    :PROPERTIES: 
@@ -160,20 +142,14 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Evaluates an expression against a list of values and returns the matching result.
    
-   #+BEGIN_EXAMPLE
-   SWITCH(1, 1, "January", 2, "February", 3,
-   "March", 4, "April", 5, "May", 6, "June", 7, "July", 8,
+   
    "August", 9, "September", 10, "October", 11, "November", 12,
    "December", "Unknown month number") = "January"
    #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   SWITCH(1, 1, "Good", 2, "OK", 3, "Bad") = "Good"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   SWITCH(3, 1, "Good", 2, "OK", 3, "Bad") = "Bad"
-   #+END_EXAMPLE
+   
+   
    
 ** DONE CHOOSE
    :PROPERTIES: 
@@ -185,13 +161,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Choose a value from a list.
    
-   #+BEGIN_EXAMPLE
-   CHOOSE(2, "Hello", "World") = "World"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   CHOOSE(3, "One", "Two", "Three") = "Three"
-   #+END_EXAMPLE
+   
+   
    
 ** DONE XOR
    :PROPERTIES: 
@@ -202,9 +174,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the exclusive OR for argument1, argument2...argumentN.
    
-   #+BEGIN_EXAMPLE
-    XOR(0, 1, 0) = TRUE
-   #+END_EXAMPLE
+   
    
 * Information
   :PROPERTIES: 
@@ -242,13 +212,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Tests if the value is an array.
    
-   #+BEGIN_EXAMPLE
-   ISARRAY({1,2,3}) = TRUE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISBLANK("FOO") = FALSE
-   #+END_EXAMPLE
+   
+   
    
 ** DONE ISBLANK
    :PROPERTIES:
@@ -299,33 +265,21 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Test for TRUE or FALSE
    
-   #+BEGIN_EXAMPLE
-   ISLOGICAL(1) = FALSE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISLOGICAL("HELLO") = FALSE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISLOGICAL(TRUE) = TRUE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISLOGICAL(FALSE) = TRUE
-   #+END_EXAMPLE
+   
+   
+   
+   
    
 ** DONE ISNA
    
    Test for NA error.
    
-   #+BEGIN_EXAMPLE
-   ISNA("foo") = FALSE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISNA(NA()) = TRUE
-   #+END_EXAMPLE
+   
+   
    
    :PROPERTIES:
    :github:   y
@@ -335,25 +289,17 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Test for non text
    
-   #+BEGIN_EXAMPLE
-   ISNONTEXT("foo") = FALSE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISNONTEXT(NA()) = TRUE
-   #+END_EXAMPLE
+   
+   
    
 ** DONE ISNUMBER
    
    Returns TRUE if the *value_to_check* is a number.
    
-   #+BEGIN_EXAMPLE
-   ISNUMBER("FOO") = FALSE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISNUMBER(1)
-   #+END_EXAMPLE
+   
+   
    
    :PROPERTIES:
    :github:   y
@@ -363,13 +309,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns true if the value is odd.
    
-   #+BEGIN_EXAMPLE
-   ISODD(1) = TRUE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISODD(2) = FALSE
-   #+END_EXAMPLE
+   
+   
    
    :PROPERTIES:
    :github:   y
@@ -379,13 +321,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns TRUE if the value is text.
    
-   #+BEGIN_EXAMPLE
-   ISTEXT("foo") = TRUE
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   ISTEXT(2) = FALSE
-   #+END_EXAMPLE
+   
+   
    
    :PROPERTIES:
    :github:   y
@@ -404,17 +342,11 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns a value converted to a number.
    
-   #+BEGIN_EXAMPLE
-     N("5.2") = 0
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     N(NA()) = NA()
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     N(TRUE) = 1
-   #+END_EXAMPLE
+   
+   
+   
    
 ** NA
    
@@ -444,49 +376,33 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns a cell reference given a row and column.
    
-   #+BEGIN_EXAMPLE
-     ADDRESS(1, 1) = "$A$1"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     ADDRESS(1, 2, 2) = "B$1"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     ADDRESS(3, 2, 3) = "$B3"
-   #+END_EXAMPLE   
+   
+   
+   
    
 ** DONE COLUMN
    
    Returns the column number of a specified cell.
    
-   #+BEGIN_EXAMPLE
-     COLUMN(A1) = "A"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     COLUMN("A1") = "A"
-   #+END_EXAMPLE
+   
+   
    
 ** DONE COLUMNS
    
    Returns the number of columns in a specified array or range.
    
-   #+BEGIN_EXAMPLE
-     COLUMNS({1,2,3,4,5}) = 5
-   #+END_EXAMPLE
+   
    
    All columns must be same size.
    
-   #+BEGIN_EXAMPLE
-     COLUMNS({1,2,3,4,5;1,2,3,4,5}) = 5
-   #+END_EXAMPLE
+   
    
    When they are not the same size then #VALUE? is returned.
    
-   #+BEGIN_EXAMPLE
-     ISERROR(COLUMNS({1,2,3,4,5;1,2}))
-   #+END_EXAMPLE
+   
    
 ** DONE HLOOKUP
    :PROPERTIES:
@@ -498,9 +414,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    HLOOKUP(lookup_value, lookup_array, index, exactmatch)
    
-   #+BEGIN_EXAMPLE
-    HLOOKUP("C", {{"A","B","C"},{1,2,3}}, 2) = 3
-   #+END_EXAMPLE
+   
    
 ** DONE INDEX
    
@@ -510,21 +424,13 @@ There are a lot of useful functions today and many more will be added in the fut
    
    INDEX(array, row_num, [column_num])
    
-   #+BEGIN_EXAMPLE
-       INDEX({{"A","B","C"}}, 1, 1) = "A"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-       INDEX({{"A","B","C"}}, 1, 2) = "B"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-       INDEX({{"A","B","C"}, {"D"}}, 2) = "D"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-       INDEX({"A","B","C";"D"}, 1, 3) = "C"
-   #+END_EXAMPLE
+   
+   
+   
+   
    
    Referenced Form
    
@@ -534,9 +440,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns a cell reference given a string.
    
-   #+BEGIN_EXAMPLE
-     ISCELL(INDIRECT("A1"))
-   #+END_EXAMPLE
+   
    
 ** DONE LOOKUP
    :PROPERTIES:
@@ -547,9 +451,7 @@ There are a lot of useful functions today and many more will be added in the fut
 
    LOOKUP(lookup_value, lookup_vector, lookup_array)
 
-     #+BEGIN_EXAMPLE
-     LOOKUP("C", {"A","B","C"}, {1,2,3}) = 3
-     #+END_EXAMPLE
+     
 
    Array Form 
 
@@ -562,14 +464,10 @@ There are a lot of useful functions today and many more will be added in the fut
    LOOKUP(lookup_value, lookup_array)
 
    Wide Array:
-     #+BEGIN_EXAMPLE
-       LOOKUP("C", {"A","B","C","D","E","F";"foo";1,2,3,4,5,6}) = 3
-     #+END_EXAMPLE
+     
 
    Tall Array:
-     #+BEGIN_EXAMPLE
-       LOOKUP("C", {"A",1;"B",2;"C",3;"D",4;"E",5;"F",6}) = 3
-     #+END_EXAMPLE
+     
 
 ** DONE MATCH
    
@@ -577,29 +475,17 @@ There are a lot of useful functions today and many more will be added in the fut
    
    MATCH(lookup_value, lookup_reference, match_type)
    
-   #+BEGIN_EXAMPLE
-      =MATCH("b",{"a","b","c"},0) = 2
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      =MATCH("a",{"aa","bb","cc"},0) = NA()   
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      =MATCH("a?",{"aa","bb","cc"},0) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      =MATCH("?b",{"aa","bb","cc"},0) = 2
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      =MATCH("b~",{"aa","b?","cc"},0) = 2
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      =MATCH("c*c",{"aa","b?","cfoobarc"},0) = 3
-   #+END_EXAMPLE
+   
+   
+   
+   
+   
+   
    
 ** DONE OFFSET
    Returns a reference to a cell a given number of rows and columns from a reference.
@@ -610,21 +496,15 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the row number of a specified cell.
    
-   #+BEGIN_EXAMPLE
-     ROW(A1) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     ROW("B10") = 10
-   #+END_EXAMPLE
+   
+   
    
 ** ROWS
    
    Returns the number of rows in a specified array or range.
    
-   #+BEGIN_EXAMPLE
-     ROWS({1;2;3;4;5;6}) = 6
-   #+END_EXAMPLE
+   
    
 ** DONE VLOOKUP
    :PROPERTIES:
@@ -636,9 +516,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    VLOOKUP(lookup_value, lookup_reference, index, [exactmatch])
    
-   #+BEGIN_EXAMPLE
-     VLOOKUP("C", {"A",1;"B",2;"C",3}, 2) = 3
-   #+END_EXAMPLE
+   
    
 * Date and Time
   :PROPERTIES:
@@ -649,13 +527,9 @@ There are a lot of useful functions today and many more will be added in the fut
 
    DATE(year, month, day)
     
-    #+BEGIN_EXAMPLE
-     DATE( 2014, 01, 01 ) = 41640
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-     DATE( 2015, 3, 4 ) = 42067  
-    #+END_EXAMPLE
+    
+    
     
 ** DATEVALUE
    Returns the serial number with *year*, *month* and *day*.
@@ -666,13 +540,9 @@ There are a lot of useful functions today and many more will be added in the fut
     
    DATEVALUE(date_text)
     
-    #+BEGIN_EXAMPLE
-     DATEVALUE("01/01/2015") = 42005
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-      DATEVALUE(2015, 1, 1) = 42005
-    #+END_EXAMPLE
+    
+    
     
 ** DATEDIF
 
@@ -697,191 +567,125 @@ There are a lot of useful functions today and many more will be added in the fut
     | "YD" | The difference between the days in the start_date and end_date. The years are ignored           |
     
     
-    #+BEGIN_EXAMPLE
-      DATEDIF(DATE(2015, 1, 15), DATE(2015, 1, 16), "D") = 1
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-      DATEDIF("1/15/2015", "1/16/2015", "D") = 1
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-      DATEDIF("1/15/2014", "1/16/2015", "Y") = 1
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-      DATEDIF("12/15/2014", "1/16/2015", "M") = 1
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-      DATEDIF("10/01/2014", "1/31/2015", "M") = 3
-    #+END_EXAMPLE
+    
+    
+    
+    
+    
     
 ** DAY
    
    Returns the day of the month for a date.
    
-   #+BEGIN_EXAMPLE
-     DAY(DATE(2015, 1, 15)) = 15
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     DAY("01/15/2015") = 15
-   #+END_EXAMPLE
+   
+   
    
 ** DAYS360
    
    Returns the number of days between two dates based on a 360-day year.
    
-   #+BEGIN_EXAMPLE
-     DAYS360("30-Nov-2012", "1-Dec-2012") = 1
-   #+END_EXAMPLE
+   
    
 ** EDATE
    
    Returns the serial number for a date represented by a string or JSDate object.
    
-   #+BEGIN_EXAMPLE
-      EDATE(DATE(2015,1,15),1) = DATE(2015,2,15)
-   #+END_EXAMPLE
+   
    
 ** EOMONTH
    
    Returns the last day of the month.
    
-   #+BEGIN_EXAMPLE
-     EOMONTH( DATE( 2015, 3, 4), 0) = 42094
-   #+END_EXAMPLE
+   
    
 ** HOUR
    
    Accepts a serial number and returns the hour from 0-24.
    
-   #+BEGIN_EXAMPLE
-     HOUR(0) = 0
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     HOUR(0.5) = 12   
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     HOUR(0.99) = 23   
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     HOUR(29779.75) = 18   
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     HOUR( TIME(16, 20, 0) ) = 16
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     HOUR( TIMEVALUE("11:00PM") ) = 23   
-   #+END_EXAMPLE
+   
+   
+   
+   
+   
+   
    
 ** ISLEAPYEAR
    
    Returns true if the date is a leap year
    
-   #+BEGIN_EXAMPLE
-     ISLEAPYEAR(DATE(2012,1,1))
-   #+END_EXAMPLE
+   
    
 ** ISOWEEKNUM                                                      :noexport:
 ** MINUTE
    
    Returns the minutes of a time value. The value is 0...59.
    
-   #+BEGIN_EXAMPLE
-     MINUTE( 0.78125 ) = 45
-   #+END_EXAMPLE
+   
    
 ** MONTH
    
    Returns the month for a date.
    
-   #+BEGIN_EXAMPLE
-     MONTH(DATEVALUE("1/1/2015")) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     MONTH(DATEVALUE("6/15/2015")) = 6
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     MONTH(DATE(2015, 1, 1)) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     ISERR(MONTH(DATEVALUE("13/15/2015")))
-   #+END_EXAMPLE
+   
+   
+   
+   
    
 ** NETWORKDAYS                                                     :noexport:
 ** NOW
    
    Returns the current date/time.
    
-   #+BEGIN_EXAMPLE
-     NOW()
-   #+END_EXAMPLE
+   
    
 ** SECOND
    
    Returns the seconds of a time value. The value is 0...59.
    
-   #+BEGIN_EXAMPLE
-     SECOND(  0.78125 ) = 0
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     31 = SECOND(  42001.78925 )      
-   #+END_EXAMPLE
+   
+   
    
 ** TIME
    
    Returns a decimal representation of time.
    
-   #+BEGIN_EXAMPLE
-      TIME( 12, 0, 0) = 0.5
-   #+END_EXAMPLE
+   
    
 ** TIMEVALUE
    
    Parses text representation of time into decimal representation.
    
-   #+BEGIN_EXAMPLE
-      TIMEVALUE("6:00") = 0.25
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      TIMEVALUE("12:00") = 0.5
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      TIMEVALUE("18:00") = 0.75
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      TIMEVALUE("12:00 PM") = 0.5
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     TIMEVALUE("12:00pm") = 0.5
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-      TIMEVALUE("1/1/2000 12:00 PM") = 0.5
-   #+END_EXAMPLE
+   
+   
+   
+   
+   
+   
    
 ** TODAY
    
    Returns the current date.
    
-   #+BEGIN_EXAMPLE
-     TODAY() = FLOOR(NOW())
-   #+END_EXAMPLE
+   
    
 ** WEEKDAY
 ** WEEKNUM
@@ -890,9 +694,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the year for a date.
    
-   #+BEGIN_EXAMPLE
-     YEAR(DATE(2014, 01, 01)) = 2014
-   #+END_EXAMPLE
+   
    
 ** YEARFRAC
    
@@ -912,39 +714,29 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Removes non-printing characters from ASCII data.
    
-   #+BEGIN_EXAMPLE
-     =CLEAN(CHAR(9)&"Monthly report"&CHAR(10)) = "Monthly report"
-   #+END_EXAMPLE
+   
    
 ** CHAR
    
    Returns the character for the ASCII code.
    
-   #+BEGIN_EXAMPLE
-    CHAR(97) = "a"
-   #+END_EXAMPLE  
+   
    
 ** CODE
    
    Returns the code for the ASCII character.
    
-   #+BEGIN_EXAMPLE
-     CODE("a") = 97
-   #+END_EXAMPLE
+   
    
 ** CONCATENATE
    
    Combines two or more strings into a single value.
    
-   #+BEGIN_EXAMPLE
-     CONCATENATE("Hello, ", "World") = "Hello, World"
-   #+END_EXAMPLE
+   
    
    The short name *CONCAT* refers to the same function.
    
-   #+BEGIN_EXAMPLE
-     CONCAT("Hello, ", "World") = "Hello, World"
-   #+END_EXAMPLE
+   
    
 ** DBCS                                                       :i18n:noexport:
    
@@ -954,101 +746,69 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Convert a number to formatted currency text with the format code: $#,##0.00_);($#,##0.00).
    
-   #+BEGIN_EXAMPLE
-     DOLLAR(1420.57) = "$1,420.57&nbsp;"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     DOLLAR(-1420.57) = "($1,420.57)"
-   #+END_EXAMPLE
+   
+   
    
 ** EXACT
    
    Compares two values and return TRUE only if the both are strings and both are identical content with a case-sensitive comparision.
    
-   #+BEGIN_EXAMPLE
-     EXACT("Hello", "Hello")
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     EXACT(1, 1) = NA()
-   #+END_EXAMPLE
+   
+   
    
 ** FIND
    
    Returns the position of text.
    
-   #+BEGIN_EXAMPLE
-     FIND("a", "fooabar") = 4
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     FIND("bar", "fooabar") = 5
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     ISERR( FIND("z", "fooabar") )
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     FIND("foo", "fooabar") = 1
-   #+END_EXAMPLE
+   
+   
+   
+   
    
 ** FIXED
    
    Rounds a number to a specified number of decimal places.
    
-   #+BEGIN_EXAMPLE
-     FIXED(1234.23, 1) = "1234.2"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     FIXED(1234.23, 1, TRUE) = "1,234.2"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     FIXED(123.237, 2, TRUE) = "123.24"
-   #+END_EXAMPLE
+   
+   
+   
    
 ** LEFT
    
    Returns a specified number of character starting from the left side.
    
-   #+BEGIN_EXAMPLE
-     LEFT("12345", 3) = "123"      
-   #+END_EXAMPLE
+   
    
 ** LEN
    
    Returns the length of a string.
    
-   #+BEGIN_EXAMPLE
-     LEN("12345") = 5
-   #+END_EXAMPLE
+   
    
 ** LOWER
    
    Sets the text to lower case.
    
-   #+BEGIN_EXAMPLE
-    LOWER("TeSt") = "test"
-   #+END_EXAMPLE
+   
    
 ** JOIN
    
    Join an array into a string with a specified delimiter.
    
-   #+BEGIN_EXAMPLE
-     JOIN(",", {1,2,3}, {4;5;6}) = "1,2,3,4,5,6"
-   #+END_EXAMPLE
+   
    
 ** MID
    
    Returns the a section from a text string; based on the specified text, start position and number of characters.
    
-   #+BEGIN_EXAMPLE
-     MID("12345", 2, 3) = "234"
-   #+END_EXAMPLE
+   
    
 ** NUMBERVALUE                                                     :noexport:
    
@@ -1059,33 +819,25 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Converts a text string to proper case.
    
-   #+BEGIN_EXAMPLE
-     PROPER("heLLo") = "Hello"
-   #+END_EXAMPLE
+   
    
 ** REPLACE
    
    REPLACE( old_text, start, number_of_chars, new_text )
    
-   #+BEGIN_EXAMPLE
-     REPLACE("apples", 2, 5, "te") = "ate"   
-   #+END_EXAMPLE
+   
    
 ** REPT
    
    Repeat a string a given number of times.
    
-   #+BEGIN_EXAMPLE
-     REPT("-*", 3) & "-" = "-*-*-*-"
-   #+END_EXAMPLE
+   
    
 ** RIGHT
    
    Returns a specified number of character starting from the right side.
    
-   #+BEGIN_EXAMPLE
-     RIGHT("12345", 2) = "45"
-   #+END_EXAMPLE
+   
    
 ** SEARCH                                                          :noexport:
    
@@ -1095,91 +847,59 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Split a string by a specified delimiter.
    
-   #+BEGIN_EXAMPLE
-      LEN(SPLIT("1,2,3", ",")) = 3
-   #+END_EXAMPLE
+   
    
 ** SUBSTITUTE
    
    SUBSTITUTE(text,old_text,new_text,instance_num)
    
-   #+BEGIN_EXAMPLE
-     SUBSTITUTE("Hello, {name}", "{name}", "Bob") = "Hello, Bob"
-   #+END_EXAMPLE
+   
    
 ** T
    
    Return text or empty string
    
-   #+BEGIN_EXAMPLE
-   T("123") = "123"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   T(123) = ""
-   #+END_EXAMPLE
+   
+   
    
 ** TEXT
    
    TEXT(rawValue, formatCode[, currentCode]) : Format numbers, currency, date and time. 
    
-   #+BEGIN_EXAMPLE
-     TEXT(0.5, "hh:mm") = "12:00"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     TEXT(0, "hh:mm AM/PM") = "12:00 AM"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     TEXT(0.5, "hh:mm AM/PM") = "12:00 PM"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     TEXT(1.0, "hh:mm AM/PM") = "12:00 AM"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     TEXT(40000, "yyyy") = "2009"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     TEXT(0.43432, "0.00%") = "43.43%"
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     TEXT(40000, "$0.00") = "$40000.00"
-   #+END_EXAMPLE
+   
+   
+   
+   
+   
+   
+   
    
 ** TRIM
    
-   #+BEGIN_EXAMPLE
-   TRIM("    text     ") = "text"
-   #+END_EXAMPLE
+   
    
 ** UPPER
    
    Sets the text to upper case.
    
-   #+BEGIN_EXAMPLE
-   UPPER("test") = "TEST"
-   #+END_EXAMPLE
+   
    
 ** VALUE
    
    Converts text into a number.
    
-   #+BEGIN_EXAMPLE
-     =VALUE("1000") = 1000
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     =VALUE("$1000") = 1000
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     =VALUE("$1,000") = 1000
-   #+END_EXAMPLE
+   
+   
+   
    
 * Math
   :PROPERTIES:
@@ -1195,49 +915,35 @@ There are a lot of useful functions today and many more will be added in the fut
     
    ABS(number)
     
-    #+BEGIN_EXAMPLE
-    ABS(-12) = 12
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-    ABS(12) = 12
-    #+END_EXAMPLE
     
-    #+BEGIN_EXAMPLE
-    ABS(-100) = 100
-    #+END_EXAMPLE
+    
+    
+    
     
 ** ACOS
    
    Returns the Inverse Cosine 
    
-   #+BEGIN_EXAMPLE
-   ACOS(0.75) = 0.7227342478134157
-   #+END_EXAMPLE
+   
    
 ** ACOSH
    
    Returns the hyperbolic arccosine of a number.
    
-   #+BEGIN_EXAMPLE
-   ACOSH(2) = 1.3169578969248166
-   #+END_EXAMPLE
+   
    
 ** ACOT
    
    Returns the principal value of the arccotangent, or inverse cotangent, of a number.
    
-   #+BEGIN_EXAMPLE
-   ACOT(2) = 0.46364760900080615
-   #+END_EXAMPLE
+   
    
 ** ACOTH
    
    Returns the inverse hyperbolic cotangent of a number.
    
-   #+BEGIN_EXAMPLE
-   ACOTH(6) = 0.16823611831060645
-   #+END_EXAMPLE
+   
    
 ** ADD
    :PROPERTIES: 
@@ -1247,9 +953,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Add two factors.
    
-   #+BEGIN_EXAMPLE
-   ADD(2, 2) = 4
-   #+END_EXAMPLE
+   
    
 ** AGGREGATE
    
@@ -1295,81 +999,57 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the arcsine, or inverse sine, of a number.
    
-   #+BEGIN_EXAMPLE
-     ASIN(-0.5) = -0.5235987755982988
-   #+END_EXAMPLE
+   
    
 ** ASINH
    
    Returns the hyperbolic arcsine of a number.
    
-   #+BEGIN_EXAMPLE
-   ASINH(10) = 2.99822295029797
-   #+END_EXAMPLE
+   
    
 ** ATAN
    
    Returns the arctangent (in radians) of a number.
    
-   #+BEGIN_EXAMPLE
-   ATAN(10) = 1.4711276743037345
-   #+END_EXAMPLE
+   
    
 ** ATAN2
    
    Returns the arctangent of the quotient of its arguments.
    
-   #+BEGIN_EXAMPLE
-   ATAN2(90, 15) = 1.4056476493802699
-   #+END_EXAMPLE
+   
    
 ** ATANH
    
    Returns the hyperbolic arctangent of a number.
    
-   #+BEGIN_EXAMPLE
-   ATANH(0.5) = 0.5493061443340549
-   #+END_EXAMPLE
+   
    
 ** BASE							   
    
    Converts a number into a text representation with the given radix (base).
    
-   #+BEGIN_EXAMPLE
-     BASE(7,2) = "111"
-   #+END_EXAMPLE
+   
    
 ** CEILING							   
    
    Returns number rounded up, away from zero, to the nearest multiple of significance. 
    
-   #+BEGIN_EXAMPLE
-     CEILING(2.5, 1) = 3
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     CEILING(-2.5, -2) = -4
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     CEILING(-2.5, 2) = -2
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     CEILING(1.5, 0.1) = 1.5
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     CEILING(0.234, 0.01) = 0.24
-   #+END_EXAMPLE
+   
+   
+   
+   
+   
    
 ** COMBIN							   
    
    Returns the number of combinations for a given number of items.
    
-   #+BEGIN_EXAMPLE
-     COMBIN(8,2) = 28
-   #+END_EXAMPLE
+   
    
 ** COMBINA							   
    
@@ -1379,65 +1059,49 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the cosine of the given angle.
    
-   #+BEGIN_EXAMPLE
-     0.5001710745970701=COS(1.047)
-   #+END_EXAMPLE
+   
    
 ** COSH
    
    Returns the hyperbolic cosine of a number.
    
-   #+BEGIN_EXAMPLE
-     27.308232836016483 = COSH(4)
-   #+END_EXAMPLE
+   
    
 ** COT							   
    
    Return the cotangent of an angle specified in radians.
    
-   #+BEGIN_EXAMPLE
-     -0.15611995216165922 = COT(30)
-   #+END_EXAMPLE
+   
    
 ** COTH							   
    
    Return the hyperbolic cotangent of a hyperbolic angle.
    
-   #+BEGIN_EXAMPLE
-     1.0373147207275482 = COTH(2)
-   #+END_EXAMPLE
+   
    
 ** CSC							   
    
    Returns the cosecant of an angle specified in radians.
    
-   #+BEGIN_EXAMPLE
-     1.5377805615408537 = CSC(15)
-   #+END_EXAMPLE
+   
    
 ** CSCH							   
    
    Return the hyperbolic cosecant of an angle specified in radians.
    
-   #+BEGIN_EXAMPLE
-     0.46964244059522464=CSCH(1.5)
-   #+END_EXAMPLE
+   
    
 ** DECIMAL							   
    
    Converts a text representation of a number in a given base into a decimal number.
    
-   #+BEGIN_EXAMPLE
-     255 = DECIMAL("FF",16)
-   #+END_EXAMPLE
+   
    
 ** DEGREES							   
    
    Converts radians into degrees.
    
-   #+BEGIN_EXAMPLE
-     180 = DEGREES(PI())
-   #+END_EXAMPLE
+   
    
 ** DIVIDE							   
    :PROPERTIES: 
@@ -1447,9 +1111,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Divide two factors.
    
-   #+BEGIN_EXAMPLE
-     DIVIDE(10, 5) = 2
-   #+END_EXAMPLE
+   
    
 ** EQ							   
    :PROPERTIES: 
@@ -1459,91 +1121,61 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Check equivalence of two factors.
    
-   #+BEGIN_EXAMPLE
-     EQ(1, +"1") 
-   #+END_EXAMPLE
+   
    
 ** EVEN							   
    
    Returns number rounded up to the nearest even integer. 
    
-   #+BEGIN_EXAMPLE
-     2=EVEN(1.5)
-   #+END_EXAMPLE
-   
-   #+BEGIN_EXAMPLE
-     4=EVEN(3)
-   #+END_EXAMPLE
-   
-   #+BEGIN_EXAMPLE
-     2=EVEN(2)
-   #+END_EXAMPLE
    
    
-   #+BEGIN_EXAMPLE
-     -2=EVEN(-1)
-   #+END_EXAMPLE
+   
+   
+   
+   
+   
+   
    
 ** EXP							   
    
    Returns e raised to the power of number.
    
    
-   #+BEGIN_EXAMPLE
-     EXP(10) = 22026.465794806707
-   #+END_EXAMPLE
+   
    
 ** FACT
    
    Returns the factorial of a number.
    
-   #+BEGIN_EXAMPLE
-     FACT(5) = 120
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     FACT(1.9) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     FACT(0)  = 1
-   #+END_EXAMPLE
+   
+   
+   
    
 ** FACTDOUBLE						   
    
    Returns the double factorial of a number.
    
-   #+BEGIN_EXAMPLE
-     FACTDOUBLE(6) = 48
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     FACTDOUBLE(7) = 105
-   #+END_EXAMPLE
+   
+   
    
 ** FLOOR
    
    Returns a number rounded down to a multiple of another number.
    
-   #+BEGIN_EXAMPLE
-   FLOOR(2.5, 1) = 2
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   FLOOR(0.234, 0.01) = 0.23
-   #+END_EXAMPLE
+   
+   
    
 ** GCD
    
    Returns the greatest common divisor of two or more integers. The greatest common divisor is the largest integer that divides both number1 and number2 without a remainder.
    
-   #+BEGIN_EXAMPLE
-     GCD(5, 2) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     GCD(24, 36) = 12
-   #+END_EXAMPLE
+   
+   
    
 ** GT							   
    :PROPERTIES: 
@@ -1553,13 +1185,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns true when a > b.
    
-   #+BEGIN_EXAMPLE
-     GT(4, 2)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     NOT(GT(2, 4))
-   #+END_EXAMPLE
+   
+   
    
 ** GTE							   
    :PROPERTIES: 
@@ -1569,42 +1197,30 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns true when a >= b.
    
-   #+BEGIN_EXAMPLE
-     GTE(4, 2)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     GTE(2, 2)
-   #+END_EXAMPLE
+   
+   
    
 ** INT							   
    
    Rounds a number down to the nearest integer.
    
-   #+BEGIN_EXAMPLE
-     INT(8.9) = 8
-   #+END_EXAMPLE
+   
    
 ** LCM							   
 ** LOG
    
    Returns a number rounded down to a multiple of another number.
    
-   #+BEGIN_EXAMPLE
-   LOG(10) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   LOG(86, 2.7182818) = 4.454347342888286
-   #+END_EXAMPLE
+   
+   
    
 ** LOG10
    
    Returns the base-10 logarithm of a number.
    
-   #+BEGIN_EXAMPLE
-     LOG10(10) = 1
-   #+END_EXAMPLE
+   
    
 ** LT
    :PROPERTIES: 
@@ -1614,13 +1230,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns true when a < b.
    
-   #+BEGIN_EXAMPLE
-     LT(2, 4)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     NOT(LT(4, 2))
-   #+END_EXAMPLE
+   
+   
    
 ** LTE
    :PROPERTIES: 
@@ -1630,13 +1242,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns true when a >= b.
    
-   #+BEGIN_EXAMPLE
-     LTE(2, 4)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     LTE(2, 2)
-   #+END_EXAMPLE
+   
+   
    
 ** MDETERM
    
@@ -1648,9 +1256,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Subtract two factors.
    
-   #+BEGIN_EXAMPLE
-     MINUS(2, 2) = 0
-   #+END_EXAMPLE
+   
    
 ** MINVERSE
    
@@ -1664,13 +1270,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the remainder when of two factors.
    
-   #+BEGIN_EXAMPLE
-     MOD(3, 2) = 1
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     MOD(11, 3) = 2
-   #+END_EXAMPLE
+   
+   
    
 ** MROUND
    
@@ -1688,13 +1290,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Multiply two factors.
    
-   #+BEGIN_EXAMPLE
-     MULTIPLY(2, 2) = 4
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     MULTIPLY(4, 2) = 8   
-   #+END_EXAMPLE
+   
+   
    
 ** ODD
    
@@ -1704,9 +1302,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the value for the univeral constant PI.
    
-   #+BEGIN_EXAMPLE
-   PI() = 3.141592653589793
-   #+END_EXAMPLE
+   
    
 ** POWER
    :PROPERTIES: 
@@ -1716,53 +1312,39 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the the nth power of a number.
    
-   #+BEGIN_EXAMPLE
-     POWER(16, 2) = 256
-   #+END_EXAMPLE
+   
    
 ** PRODUCT
    
    Returns the product of the arguments.
    
-   #+BEGIN_EXAMPLE
-     PRODUCT( 3, 6, 2, 8, 5 ) = 1440
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     PRODUCT( 2, 2, 2, 2 ) = 16
-   #+END_EXAMPLE
+   
+   
    
 ** QUOTIENT
    
    Returns the integer portion of a divisor.
    
-   #+BEGIN_EXAMPLE
-     QUOTIENT(5, 2) = 2
-   #+END_EXAMPLE
+   
    
 ** RADIANS
    
    Convert degrees to radians.
    
-   #+BEGIN_EXAMPLE
-     RADIANS(180) = PI()
-   #+END_EXAMPLE
+   
    
 ** RAND
    
    Generate a random number.
    
-   #+BEGIN_EXAMPLE
-     RAND()
-   #+END_EXAMPLE
+   
    
 ** RANDBETWEEN
    
    Generate a random number between two values.
    
-   #+BEGIN_EXAMPLE
-     RANDBETWEEN(0, 100)
-   #+END_EXAMPLE
+   
    
 ** ROMAN
    
@@ -1772,30 +1354,20 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Round number with precision.
    
-   #+BEGIN_EXAMPLE
-   ROUND(14.20223234, 2) = 14.20
-   #+END_EXAMPLE
+   
    
 ** ROUNDDOWN
 ** ROUNDUP
    
    Rounds a number up, away from 0 (zero).
    
-   #+BEGIN_EXAMPLE
-     4 = ROUNDUP(3.2,0)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   77 = ROUNDUP(76.9,0)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   3.142 = ROUNDUP(3.14159, 3)
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-   -3.2 = ROUNDUP(-3.14159, 1)
-   #+END_EXAMPLE  
+   
+   
+   
+   
    
 ** SEC
 ** SECH
@@ -1813,9 +1385,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Calculate SUM of list of numbers.
    
-   #+BEGIN_EXAMPLE
-   SUM({1,1,1,1}, 10) = 14
-   #+END_EXAMPLE
+   
    
 * Financial
   :PROPERTIES:
@@ -1825,13 +1395,9 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the accrued interest for a security that pays periodic interest.
    
-   #+BEGIN_EXAMPLE
-    183.88888888888889 = ACCRINT("2/2/2012", "3/30/2012", "12/4/2013",0.1,1000,1,0,1)  
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-    183.88888888888889 = ACCRINT(DATE(2012,2,2),DATE(2012,3,20),DATE(2013,12,4),0.1,1000,1,0,1)
-   #+END_EXAMPLE
+   
+   
    
    Example: Accrued interest test
     
@@ -1912,9 +1478,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the future value of an initial sum with a subsequent stream of payments.
    
-   #+BEGIN_EXAMPLE
-    =FV(7.5%/12, 2*12, -250, -5000, 1) = 12298.46381980343
-   #+END_EXAMPLE
+   
    
 ** FVSCHEDULE
 ** INTRATE
@@ -1922,9 +1486,7 @@ There are a lot of useful functions today and many more will be added in the fut
 ** IPMT
    Returns the portion of the periodic payment which is interest for a fixed rate loan or annuity.
    
-   #+BEGIN_EXAMPLE
-      IPMT(10%, 3, 3, 8000) = -292.4471299093658
-   #+END_EXAMPLE
+   
    
 ** MDURATION
 ** MIRR
@@ -1933,16 +1495,12 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the number of payment periods for an annuity.
    
-   #+BEGIN_EXAMPLE
-     NPER(12%/12, -100, -1000, 10000, TRUE) = 59.67386567429457
-   #+END_EXAMPLE
+   
    
 ** NPV
    Returns the net present value of an investment with regular cash payments.
    
-   #+BEGIN_EXAMPLE
-     NPV(10%, -10000, 3000, 4200, 6800) = 1188.4434123352207
-   #+END_EXAMPLE
+   
    
 ** ODDFPRICE
 ** ODDFYIELD
@@ -1950,17 +1508,13 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the payment per period for a fixed rate loan.
    
-   #+BEGIN_EXAMPLE
-      PMT(8%/12, 10, 10000) = -1037.0320893591606
-   #+END_EXAMPLE
+   
    
 ** PV
    
    Returns the present value of a stream of future payments with a final lump sum.
    
-   #+BEGIN_EXAMPLE
-     PV(0.075/12, 2*12, 250, 0, 0) = -5555.605845933733
-   #+END_EXAMPLE
+   
    
 * Stats
   :PROPERTIES:
@@ -1971,9 +1525,7 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Compute the average of a range or array
    
-   #+BEGIN_EXAMPLE
-       AVERAGE({ 1, 2, 3, 4, 5}) = 3
-   #+END_EXAMPLE
+   
    
 ** AVERAGEA
 ** AVERAGEIF
@@ -1987,17 +1539,11 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Return count of fields that match a criterion
    
-   #+BEGIN_EXAMPLE
-     COUNTIF({ "apples", "bananas", "grapes", "apples" }, "apples") = 2
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     COUNTIF({ 1,1,2,3,5 }, 1) = 2
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     COUNTIF({ 1,1,2,3,5 }, ">1") = 3
-   #+END_EXAMPLE
+   
+   
+   
    
 ** COUNTIFS
 ** COUNTUNIQUE
@@ -2019,17 +1565,13 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Returns the maximum of a list of arguments, ignoring text entries
    
-   #+BEGIN_EXAMPLE
-       MAX({1,2,30,4}, 10) = 30
-   #+END_EXAMPLE
+   
    
 ** MAXA
 ** MEDIAN
 ** MIN
    Returns the minimum of a list of arguments, ignoring text entries
-   #+BEGIN_EXAMPLE
-       MIN({6,3,"foo",3,4}, 1) = 1
-   #+END_EXAMPLE
+   
    
 ** MINA
 ** PEARSON
@@ -2056,15 +1598,11 @@ There are a lot of useful functions today and many more will be added in the fut
   :END:
 ** BESSELI
    
-   #+BEGIN_EXAMPLE
-     BESSELI(1.5, 1) = 0.981666428577908
-   #+END_EXAMPLE
+   
    
 ** BESSELJ
    
-   #+BEGIN_EXAMPLE
-     BESSELJ(1.9, 2) = 0.329925727692387
-   #+END_EXAMPLE
+   
    
 ** BESSELK
 ** BESSELY
@@ -2072,21 +1610,13 @@ There are a lot of useful functions today and many more will be added in the fut
    
    Convert a binary number to a decimal number with a maximum of 10 characters (bits). 
    
-   #+BEGIN_EXAMPLE
-     BIN2DEC(1111) = 15
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     BIN2DEC("1111") = 15
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     BIN2DEC("1011111111") = -257
-   #+END_EXAMPLE
    
-   #+BEGIN_EXAMPLE
-     BIN2DEC("1111111111") = -1
-   #+END_EXAMPLE
+   
+   
+   
+   
    
 ** BIN2HEX
 ** BIN2OCT
