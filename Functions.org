@@ -11,8 +11,8 @@ contain one pure function or one group of pure functions.
 The functions in this library do not have side effects. They
 accept input and they return output. This is what makes them
 pure. This makes the functions easy to compose because they
-can nested inside indefinitely. This is not new. This is how
-spreadsheets work today.
+can nested indefinitely. This is not new. This is how spreadsheets 
+work today.
 
 This project seeks to make it easy to selectively and automatically
 load the dependencies needed to fulfill the user's requirements to complete
