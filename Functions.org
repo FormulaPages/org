@@ -3,7 +3,19 @@
 
 The long-term goal is to build npm packages for
 all 300 or so functions supported commonly by spreadsheet
-software.
+software. The purpose is to make an infrastructure of UMD
+code that can be added to any modern browser and node.js.
+This infrastruture will consist of small packages that each
+contain one pure function or one group of pure functions.
+
+The functions in this library do not have side effects. They
+accept input and they return output. This is what makes them
+pure. This makes the functions easy to compose because they
+can nested inside indefinitely. This is not new. This is how
+spreadsheets work today.
+
+This projects seeks to make it easy to selectively and automatically
+load the dependencies needed to fulfill the user's requirements. 
 
 * Status  
 ** Logical
