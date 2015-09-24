@@ -40,382 +40,382 @@ There are a lot of useful functions today and many more will be added in the fut
 * Status  
 ** Logical
    
-   #+BEGIN: propview :id "logical" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Logical")))
+   #+BEGIN: propview :id logical :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Logical)))
    | ITEM      | published | github | npm | circleci |
    |-----------+-----------+--------+-----+----------|
-   | "AND"     | "y"       | "y"    | "y" |        0 |
-   | "OR"      | "y"       | "y"    | "y" |        0 |
-   | "NOT"     | "y"       | "y"    | "y" |        0 |
-   | "IF"      | "y"       | "y"    | "y" |        0 |
-   | "IFERROR" | "y"       | "y"    | "y" |        0 |
-   | "IFNA"    | "y"       | "y"    | "y" |        0 |
-   | "SWITCH"  | "y"       | "y"    | "y" |        0 |
-   | "CHOOSE"  | "y"       | "y"    | "y" |      "y" |
-   | "XOR"     | "y"       | "y"    | "y" |        0 |
+   | AND     | y       | y    | y |        0 |
+   | OR      | y       | y    | y |        0 |
+   | NOT     | y       | y    | y |        0 |
+   | IF      | y       | y    | y |        0 |
+   | IFERROR | y       | y    | y |        0 |
+   | IFNA    | y       | y    | y |        0 |
+   | SWITCH  | y       | y    | y |        0 |
+   | CHOOSE  | y       | y    | y |      y |
+   | XOR     | y       | y    | y |        0 |
    |-----------+-----------+--------+-----+----------|
    |           |           |        |     |          |
    #+END:
    
 ** Information
    
-   #+BEGIN: propview :id "information" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Information")))
+   #+BEGIN: propview :id information :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Information)))
    | ITEM         | published | github | npm | circleci |
    |--------------+-----------+--------+-----+----------|
-   | "CELL"       |         0 |      0 |   0 |        0 |
-   | "DEPENDENTS" |         0 |      0 |   0 |        0 |
-   | "INFO"       |         0 |      0 |   0 |        0 |
-   | "ISARRAY"    |         0 |    "y" | "y" |        0 |
-   | "ISBLANK"    |         0 |    "y" | "y" |        0 |
-   | "ISEMAIL"    |         0 |    "y" | "y" |        0 |
-   | "ISERR"      |         0 |    "y" | "y" |        0 |
-   | "ISERROR"    |         0 |    "y" | "y" |        0 |
-   | "ISEVEN"     |         0 |    "y" | "y" |        0 |
-   | "ISFORMULA"  |         0 |    "y" | "y" |        0 |
-   | "ISLOGICAL"  |         0 |      0 |   0 |        0 |
-   | "ISNA"       |         0 |    "y" | "y" |        0 |
-   | "ISNONTEXT"  |         0 |      0 |   0 |        0 |
-   | "ISNUMBER"   |         0 |    "y" | "y" |        0 |
-   | "ISODD"      |         0 |    "y" | "y" |        0 |
-   | "ISTEXT"     |         0 |    "y" | "y" |        0 |
-   | "ISRANGE"    |         0 |      0 |   0 |        0 |
-   | "ISREF"      |         0 |      0 |   0 |        0 |
-   | "ISURL"      |         0 |      0 |   0 |        0 |
-   | "N"          |         0 |      0 |   0 |        0 |
-   | "NA"         |         0 |      0 |   0 |        0 |
-   | "PRECEDENTS" |         0 |      0 |   0 |        0 |
-   | "SHEET"      |         0 |      0 |   0 |        0 |
-   | "SHEETS"     |         0 |      0 |   0 |        0 |
-   | "TYPE"       |         0 |      0 |   0 |        0 |
+   | CELL       |         0 |      0 |   0 |        0 |
+   | DEPENDENTS |         0 |      0 |   0 |        0 |
+   | INFO       |         0 |      0 |   0 |        0 |
+   | ISARRAY    |         0 |    y | y |        0 |
+   | ISBLANK    |         0 |    y | y |        0 |
+   | ISEMAIL    |         0 |    y | y |        0 |
+   | ISERR      |         0 |    y | y |        0 |
+   | ISERROR    |         0 |    y | y |        0 |
+   | ISEVEN     |         0 |    y | y |        0 |
+   | ISFORMULA  |         0 |    y | y |        0 |
+   | ISLOGICAL  |         0 |      0 |   0 |        0 |
+   | ISNA       |         0 |    y | y |        0 |
+   | ISNONTEXT  |         0 |      0 |   0 |        0 |
+   | ISNUMBER   |         0 |    y | y |        0 |
+   | ISODD      |         0 |    y | y |        0 |
+   | ISTEXT     |         0 |    y | y |        0 |
+   | ISRANGE    |         0 |      0 |   0 |        0 |
+   | ISREF      |         0 |      0 |   0 |        0 |
+   | ISURL      |         0 |      0 |   0 |        0 |
+   | N          |         0 |      0 |   0 |        0 |
+   | NA         |         0 |      0 |   0 |        0 |
+   | PRECEDENTS |         0 |      0 |   0 |        0 |
+   | SHEET      |         0 |      0 |   0 |        0 |
+   | SHEETS     |         0 |      0 |   0 |        0 |
+   | TYPE       |         0 |      0 |   0 |        0 |
    |--------------+-----------+--------+-----+----------|
    |              |           |        |     |          |
    #+END:
    
 ** Lookup and Reference
    
-   #+BEGIN: propview :id "lookup" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Lookup and Reference")))
+   #+BEGIN: propview :id lookup :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Lookup and Reference)))
    | ITEM       | published | github | npm | circleci |
    |------------+-----------+--------+-----+----------|
-   | "ADDRESS"  |         0 |      0 |   0 |        0 |
-   | "COLUMN"   |         0 |      0 |   0 |        0 |
-   | "COLUMNS"  |         0 |      0 |   0 |        0 |
-   | "HLOOKUP"  |         0 |    "y" | "y" |        0 |
-   | "INDEX"    |         0 |      0 |   0 |        0 |
-   | "INDIRECT" |         0 |      0 |   0 |        0 |
-   | "LOOKUP"   |         0 |    "y" | "y" |        0 |
-   | "MATCH"    |         0 |      0 |   0 |        0 |
-   | "OFFSET"   |         0 |      0 |   0 |        0 |
-   | "ROW"      |         0 |      0 |   0 |        0 |
-   | "ROWS"     |         0 |      0 |   0 |        0 |
-   | "VLOOKUP"  |         0 |    "y" | "y" |        0 |
+   | ADDRESS  |         0 |      0 |   0 |        0 |
+   | COLUMN   |         0 |      0 |   0 |        0 |
+   | COLUMNS  |         0 |      0 |   0 |        0 |
+   | HLOOKUP  |         0 |    y | y |        0 |
+   | INDEX    |         0 |      0 |   0 |        0 |
+   | INDIRECT |         0 |      0 |   0 |        0 |
+   | LOOKUP   |         0 |    y | y |        0 |
+   | MATCH    |         0 |      0 |   0 |        0 |
+   | OFFSET   |         0 |      0 |   0 |        0 |
+   | ROW      |         0 |      0 |   0 |        0 |
+   | ROWS     |         0 |      0 |   0 |        0 |
+   | VLOOKUP  |         0 |    y | y |        0 |
    |------------+-----------+--------+-----+----------|
    |            |           |        |     |          |
    #+END:
    
 ** Date and Time
    
-   #+BEGIN: propview :id "date" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Date and Time")))
+   #+BEGIN: propview :id date :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Date and Time)))
    | ITEM          | published | github | npm | circleci |
    |---------------+-----------+--------+-----+----------|
-   | "DATE"        |         0 |      0 |   0 |        0 |
-   | "DATEVALUE"   |         0 |      0 |   0 |        0 |
-   | "DATEDIF"     |         0 |      0 |   0 |        0 |
-   | "DAY"         |         0 |      0 |   0 |        0 |
-   | "DAYS360"     |         0 |      0 |   0 |        0 |
-   | "EDATE"       |         0 |      0 |   0 |        0 |
-   | "EOMONTH"     |         0 |      0 |   0 |        0 |
-   | "HOUR"        |         0 |      0 |   0 |        0 |
-   | "ISLEAPYEAR"  |         0 |      0 |   0 |        0 |
-   | "ISOWEEKNUM"  |         0 |      0 |   0 |        0 |
-   | "MINUTE"      |         0 |      0 |   0 |        0 |
-   | "MONTH"       |         0 |      0 |   0 |        0 |
-   | "NETWORKDAYS" |         0 |      0 |   0 |        0 |
-   | "NOW"         |         0 |      0 |   0 |        0 |
-   | "SECOND"      |         0 |      0 |   0 |        0 |
-   | "TIME"        |         0 |      0 |   0 |        0 |
-   | "TIMEVALUE"   |         0 |      0 |   0 |        0 |
-   | "TODAY"       |         0 |      0 |   0 |        0 |
-   | "WEEKDAY"     |         0 |      0 |   0 |        0 |
-   | "WEEKNUM"     |         0 |      0 |   0 |        0 |
-   | "WORKDAY"     |         0 |      0 |   0 |        0 |
-   | "YEAR"        |         0 |      0 |   0 |        0 |
-   | "YEARFRAC"    |         0 |      0 |   0 |        0 |
+   | DATE        |         0 |      0 |   0 |        0 |
+   | DATEVALUE   |         0 |      0 |   0 |        0 |
+   | DATEDIF     |         0 |      0 |   0 |        0 |
+   | DAY         |         0 |      0 |   0 |        0 |
+   | DAYS360     |         0 |      0 |   0 |        0 |
+   | EDATE       |         0 |      0 |   0 |        0 |
+   | EOMONTH     |         0 |      0 |   0 |        0 |
+   | HOUR        |         0 |      0 |   0 |        0 |
+   | ISLEAPYEAR  |         0 |      0 |   0 |        0 |
+   | ISOWEEKNUM  |         0 |      0 |   0 |        0 |
+   | MINUTE      |         0 |      0 |   0 |        0 |
+   | MONTH       |         0 |      0 |   0 |        0 |
+   | NETWORKDAYS |         0 |      0 |   0 |        0 |
+   | NOW         |         0 |      0 |   0 |        0 |
+   | SECOND      |         0 |      0 |   0 |        0 |
+   | TIME        |         0 |      0 |   0 |        0 |
+   | TIMEVALUE   |         0 |      0 |   0 |        0 |
+   | TODAY       |         0 |      0 |   0 |        0 |
+   | WEEKDAY     |         0 |      0 |   0 |        0 |
+   | WEEKNUM     |         0 |      0 |   0 |        0 |
+   | WORKDAY     |         0 |      0 |   0 |        0 |
+   | YEAR        |         0 |      0 |   0 |        0 |
+   | YEARFRAC    |         0 |      0 |   0 |        0 |
    |---------------+-----------+--------+-----+----------|
    |               |           |        |     |          |
    #+END:
    
 ** Text
    
-   #+BEGIN: propview :id "text" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Text")))
+   #+BEGIN: propview :id text :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Text)))
    | ITEM          | published | github | npm | circleci |
    |---------------+-----------+--------+-----+----------|
-   | "ASC"         |         0 |      0 |   0 |        0 |
-   | "BAHTTEXT"    |         0 |      0 |   0 |        0 |
-   | "CLEAN"       |         0 |      0 |   0 |        0 |
-   | "CHAR"        |         0 |      0 |   0 |        0 |
-   | "CODE"        |         0 |      0 |   0 |        0 |
-   | "CONCATENATE" |         0 |      0 |   0 |        0 |
-   | "DBCS"        |         0 |      0 |   0 |        0 |
-   | "DOLLAR"      |         0 |      0 |   0 |        0 |
-   | "EXACT"       |         0 |      0 |   0 |        0 |
-   | "FIND"        |         0 |      0 |   0 |        0 |
-   | "FIXED"       |         0 |      0 |   0 |        0 |
-   | "LEFT"        |         0 |      0 |   0 |        0 |
-   | "LEN"         |         0 |      0 |   0 |        0 |
-   | "LOWER"       |         0 |      0 |   0 |        0 |
-   | "JOIN"        |         0 |      0 |   0 |        0 |
-   | "MID"         |         0 |      0 |   0 |        0 |
-   | "NUMBERVALUE" |         0 |      0 |   0 |        0 |
-   | "PRONETIC"    |         0 |      0 |   0 |        0 |
-   | "PROPER"      |         0 |      0 |   0 |        0 |
-   | "REPLACE"     |         0 |      0 |   0 |        0 |
-   | "REPT"        |         0 |      0 |   0 |        0 |
-   | "RIGHT"       |         0 |      0 |   0 |        0 |
-   | "SEARCH"      |         0 |      0 |   0 |        0 |
-   | "SPLIT"       |         0 |      0 |   0 |        0 |
-   | "SUBSTITUTE"  |         0 |      0 |   0 |        0 |
-   | "T"           |         0 |      0 |   0 |        0 |
-   | "TEXT"        |         0 |      0 |   0 |        0 |
-   | "TRIM"        |         0 |      0 |   0 |        0 |
-   | "UPPER"       |         0 |      0 |   0 |        0 |
-   | "VALUE"       |         0 |      0 |   0 |        0 |
+   | ASC         |         0 |      0 |   0 |        0 |
+   | BAHTTEXT    |         0 |      0 |   0 |        0 |
+   | CLEAN       |         0 |      0 |   0 |        0 |
+   | CHAR        |         0 |      0 |   0 |        0 |
+   | CODE        |         0 |      0 |   0 |        0 |
+   | CONCATENATE |         0 |      0 |   0 |        0 |
+   | DBCS        |         0 |      0 |   0 |        0 |
+   | DOLLAR      |         0 |      0 |   0 |        0 |
+   | EXACT       |         0 |      0 |   0 |        0 |
+   | FIND        |         0 |      0 |   0 |        0 |
+   | FIXED       |         0 |      0 |   0 |        0 |
+   | LEFT        |         0 |      0 |   0 |        0 |
+   | LEN         |         0 |      0 |   0 |        0 |
+   | LOWER       |         0 |      0 |   0 |        0 |
+   | JOIN        |         0 |      0 |   0 |        0 |
+   | MID         |         0 |      0 |   0 |        0 |
+   | NUMBERVALUE |         0 |      0 |   0 |        0 |
+   | PRONETIC    |         0 |      0 |   0 |        0 |
+   | PROPER      |         0 |      0 |   0 |        0 |
+   | REPLACE     |         0 |      0 |   0 |        0 |
+   | REPT        |         0 |      0 |   0 |        0 |
+   | RIGHT       |         0 |      0 |   0 |        0 |
+   | SEARCH      |         0 |      0 |   0 |        0 |
+   | SPLIT       |         0 |      0 |   0 |        0 |
+   | SUBSTITUTE  |         0 |      0 |   0 |        0 |
+   | T           |         0 |      0 |   0 |        0 |
+   | TEXT        |         0 |      0 |   0 |        0 |
+   | TRIM        |         0 |      0 |   0 |        0 |
+   | UPPER       |         0 |      0 |   0 |        0 |
+   | VALUE       |         0 |      0 |   0 |        0 |
    |---------------+-----------+--------+-----+----------|
    |               |           |        |     |          |
    #+END:
    
 ** Math
    
-   #+BEGIN: propview :id "math" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Math")))
+   #+BEGIN: propview :id math :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Math)))
    | ITEM          | published | github | npm | circleci |
    |---------------+-----------+--------+-----+----------|
-   | "ABS"         |         0 |    "y" | "y" |        0 |
-   | "ACOS"        |         0 |      0 |   0 |        0 |
-   | "ACOSH"       |         0 |      0 |   0 |        0 |
-   | "ACOT"        |         0 |      0 |   0 |        0 |
-   | "ACOTH"       |         0 |      0 |   0 |        0 |
-   | "ADD"         |         0 |    "y" | "y" |        0 |
-   | "AGGREGATE"   |         0 |      0 |   0 |        0 |
-   | "ARABIC"      |         0 |      0 |   0 |        0 |
-   | "ASIN"        |         0 |      0 |   0 |        0 |
-   | "ASINH"       |         0 |      0 |   0 |        0 |
-   | "ATAN"        |         0 |      0 |   0 |        0 |
-   | "ATAN2"       |         0 |      0 |   0 |        0 |
-   | "ATANH"       |         0 |      0 |   0 |        0 |
-   | "BASE"        |         0 |      0 |   0 |        0 |
-   | "CEILING"     |         0 |      0 |   0 |        0 |
-   | "COMBIN"      |         0 |      0 |   0 |        0 |
-   | "COMBINA"     |         0 |      0 |   0 |        0 |
-   | "COS"         |         0 |      0 |   0 |        0 |
-   | "COSH"        |         0 |      0 |   0 |        0 |
-   | "COT"         |         0 |      0 |   0 |        0 |
-   | "COTH"        |         0 |      0 |   0 |        0 |
-   | "CSC"         |         0 |      0 |   0 |        0 |
-   | "CSCH"        |         0 |      0 |   0 |        0 |
-   | "DECIMAL"     |         0 |      0 |   0 |        0 |
-   | "DEGREES"     |         0 |      0 |   0 |        0 |
-   | "DIVIDE"      |         0 |    "y" | "y" |        0 |
-   | "EQ"          |         0 |    "y" | "y" |        0 |
-   | "EVEN"        |         0 |      0 |   0 |        0 |
-   | "EXP"         |         0 |      0 |   0 |        0 |
-   | "FACT"        |         0 |      0 |   0 |        0 |
-   | "FACTDOUBLE"  |         0 |      0 |   0 |        0 |
-   | "FLOOR"       |         0 |      0 |   0 |        0 |
-   | "GCD"         |         0 |      0 |   0 |        0 |
-   | "GT"          |         0 |    "y" | "y" |        0 |
-   | "GTE"         |         0 |    "y" | "y" |        0 |
-   | "INT"         |         0 |      0 |   0 |        0 |
-   | "LCM"         |         0 |      0 |   0 |        0 |
-   | "LOG"         |         0 |      0 |   0 |        0 |
-   | "LOG10"       |         0 |      0 |   0 |        0 |
-   | "LT"          |         0 |    "y" | "y" |        0 |
-   | "LTE"         |         0 |    "y" | "y" |        0 |
-   | "MDETERM"     |         0 |      0 |   0 |        0 |
-   | "MINUS"       |         0 |      0 |   0 |        0 |
-   | "MINVERSE"    |         0 |      0 |   0 |        0 |
-   | "MMULT"       |         0 |      0 |   0 |        0 |
-   | "MOD"         |         0 |      0 |   0 |        0 |
-   | "MROUND"      |         0 |      0 |   0 |        0 |
-   | "MULTINOMIAL" |         0 |      0 |   0 |        0 |
-   | "MULTIPLY"    |         0 |    "y" | "y" |        0 |
-   | "ODD"         |         0 |      0 |   0 |        0 |
-   | "PI"          |         0 |      0 |   0 |        0 |
-   | "POWER"       |         0 |    "y" | "y" |        0 |
-   | "PRODUCT"     |         0 |      0 |   0 |        0 |
-   | "QUOTIENT"    |         0 |      0 |   0 |        0 |
-   | "RADIANS"     |         0 |      0 |   0 |        0 |
-   | "RAND"        |         0 |      0 |   0 |        0 |
-   | "RANDBETWEEN" |         0 |      0 |   0 |        0 |
-   | "ROMAN"       |         0 |      0 |   0 |        0 |
-   | "ROUND"       |         0 |      0 |   0 |        0 |
-   | "ROUNDDOWN"   |         0 |      0 |   0 |        0 |
-   | "ROUNDUP"     |         0 |      0 |   0 |        0 |
-   | "SEC"         |         0 |      0 |   0 |        0 |
-   | "SECH"        |         0 |      0 |   0 |        0 |
-   | "SERIESSUM"   |         0 |      0 |   0 |        0 |
-   | "SIGN"        |         0 |      0 |   0 |        0 |
-   | "SIN"         |         0 |      0 |   0 |        0 |
-   | "SQRT"        |         0 |      0 |   0 |        0 |
-   | "SQRTPI"      |         0 |      0 |   0 |        0 |
-   | "SUBTOTAL"    |         0 |      0 |   0 |        0 |
-   | "SUM"         |         0 |    "y" | "y" |        0 |
+   | ABS         |         0 |    y | y |        0 |
+   | ACOS        |         0 |      0 |   0 |        0 |
+   | ACOSH       |         0 |      0 |   0 |        0 |
+   | ACOT        |         0 |      0 |   0 |        0 |
+   | ACOTH       |         0 |      0 |   0 |        0 |
+   | ADD         |         0 |    y | y |        0 |
+   | AGGREGATE   |         0 |      0 |   0 |        0 |
+   | ARABIC      |         0 |      0 |   0 |        0 |
+   | ASIN        |         0 |      0 |   0 |        0 |
+   | ASINH       |         0 |      0 |   0 |        0 |
+   | ATAN        |         0 |      0 |   0 |        0 |
+   | ATAN2       |         0 |      0 |   0 |        0 |
+   | ATANH       |         0 |      0 |   0 |        0 |
+   | BASE        |         0 |      0 |   0 |        0 |
+   | CEILING     |         0 |      0 |   0 |        0 |
+   | COMBIN      |         0 |      0 |   0 |        0 |
+   | COMBINA     |         0 |      0 |   0 |        0 |
+   | COS         |         0 |      0 |   0 |        0 |
+   | COSH        |         0 |      0 |   0 |        0 |
+   | COT         |         0 |      0 |   0 |        0 |
+   | COTH        |         0 |      0 |   0 |        0 |
+   | CSC         |         0 |      0 |   0 |        0 |
+   | CSCH        |         0 |      0 |   0 |        0 |
+   | DECIMAL     |         0 |      0 |   0 |        0 |
+   | DEGREES     |         0 |      0 |   0 |        0 |
+   | DIVIDE      |         0 |    y | y |        0 |
+   | EQ          |         0 |    y | y |        0 |
+   | EVEN        |         0 |      0 |   0 |        0 |
+   | EXP         |         0 |      0 |   0 |        0 |
+   | FACT        |         0 |      0 |   0 |        0 |
+   | FACTDOUBLE  |         0 |      0 |   0 |        0 |
+   | FLOOR       |         0 |      0 |   0 |        0 |
+   | GCD         |         0 |      0 |   0 |        0 |
+   | GT          |         0 |    y | y |        0 |
+   | GTE         |         0 |    y | y |        0 |
+   | INT         |         0 |      0 |   0 |        0 |
+   | LCM         |         0 |      0 |   0 |        0 |
+   | LOG         |         0 |      0 |   0 |        0 |
+   | LOG10       |         0 |      0 |   0 |        0 |
+   | LT          |         0 |    y | y |        0 |
+   | LTE         |         0 |    y | y |        0 |
+   | MDETERM     |         0 |      0 |   0 |        0 |
+   | MINUS       |         0 |      0 |   0 |        0 |
+   | MINVERSE    |         0 |      0 |   0 |        0 |
+   | MMULT       |         0 |      0 |   0 |        0 |
+   | MOD         |         0 |      0 |   0 |        0 |
+   | MROUND      |         0 |      0 |   0 |        0 |
+   | MULTINOMIAL |         0 |      0 |   0 |        0 |
+   | MULTIPLY    |         0 |    y | y |        0 |
+   | ODD         |         0 |      0 |   0 |        0 |
+   | PI          |         0 |      0 |   0 |        0 |
+   | POWER       |         0 |    y | y |        0 |
+   | PRODUCT     |         0 |      0 |   0 |        0 |
+   | QUOTIENT    |         0 |      0 |   0 |        0 |
+   | RADIANS     |         0 |      0 |   0 |        0 |
+   | RAND        |         0 |      0 |   0 |        0 |
+   | RANDBETWEEN |         0 |      0 |   0 |        0 |
+   | ROMAN       |         0 |      0 |   0 |        0 |
+   | ROUND       |         0 |      0 |   0 |        0 |
+   | ROUNDDOWN   |         0 |      0 |   0 |        0 |
+   | ROUNDUP     |         0 |      0 |   0 |        0 |
+   | SEC         |         0 |      0 |   0 |        0 |
+   | SECH        |         0 |      0 |   0 |        0 |
+   | SERIESSUM   |         0 |      0 |   0 |        0 |
+   | SIGN        |         0 |      0 |   0 |        0 |
+   | SIN         |         0 |      0 |   0 |        0 |
+   | SQRT        |         0 |      0 |   0 |        0 |
+   | SQRTPI      |         0 |      0 |   0 |        0 |
+   | SUBTOTAL    |         0 |      0 |   0 |        0 |
+   | SUM         |         0 |    y | y |        0 |
    |---------------+-----------+--------+-----+----------|
    |               |           |        |     |          |
    #+END:
    
 ** Financial
    
-   #+BEGIN: propview :id "financial" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Financial")))
+   #+BEGIN: propview :id financial :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Financial)))
    | ITEM         | published | github | npm | circleci |
    |--------------+-----------+--------+-----+----------|
-   | "ACCRINT"    |         0 |      0 |   0 |        0 |
-   | "ACCRINTM"   |         0 |      0 |   0 |        0 |
-   | "AMORLINC"   |         0 |      0 |   0 |        0 |
-   | "COUPDAYS"   |         0 |      0 |   0 |        0 |
-   | "COUPDAYSNC" |         0 |      0 |   0 |        0 |
-   | "COUPNCD"    |         0 |      0 |   0 |        0 |
-   | "COUPNUM"    |         0 |      0 |   0 |        0 |
-   | "COUPPCD"    |         0 |      0 |   0 |        0 |
-   | "CUMIPMT"    |         0 |      0 |   0 |        0 |
-   | "CUMPRINC"   |         0 |      0 |   0 |        0 |
-   | "DB"         |         0 |      0 |   0 |        0 |
-   | "DDB"        |         0 |      0 |   0 |        0 |
-   | "DISC"       |         0 |      0 |   0 |        0 |
-   | "DOLLARDE"   |         0 |      0 |   0 |        0 |
-   | "DOLLARFR"   |         0 |      0 |   0 |        0 |
-   | "DURATION"   |         0 |      0 |   0 |        0 |
-   | "EFFECT"     |         0 |      0 |   0 |        0 |
-   | "FV"         |         0 |      0 |   0 |        0 |
-   | "FVSCHEDULE" |         0 |      0 |   0 |        0 |
-   | "INTRATE"    |         0 |      0 |   0 |        0 |
-   | "IRR"        |         0 |      0 |   0 |        0 |
-   | "IPMT"       |         0 |      0 |   0 |        0 |
-   | "MDURATION"  |         0 |      0 |   0 |        0 |
-   | "MIRR"       |         0 |      0 |   0 |        0 |
-   | "NOMINAL"    |         0 |      0 |   0 |        0 |
-   | "NPER"       |         0 |      0 |   0 |        0 |
-   | "NPV"        |         0 |      0 |   0 |        0 |
-   | "ODDFPRICE"  |         0 |      0 |   0 |        0 |
-   | "ODDFYIELD"  |         0 |      0 |   0 |        0 |
-   | "PMT"        |         0 |      0 |   0 |        0 |
-   | "PV"         |         0 |      0 |   0 |        0 |
+   | ACCRINT    |         0 |      0 |   0 |        0 |
+   | ACCRINTM   |         0 |      0 |   0 |        0 |
+   | AMORLINC   |         0 |      0 |   0 |        0 |
+   | COUPDAYS   |         0 |      0 |   0 |        0 |
+   | COUPDAYSNC |         0 |      0 |   0 |        0 |
+   | COUPNCD    |         0 |      0 |   0 |        0 |
+   | COUPNUM    |         0 |      0 |   0 |        0 |
+   | COUPPCD    |         0 |      0 |   0 |        0 |
+   | CUMIPMT    |         0 |      0 |   0 |        0 |
+   | CUMPRINC   |         0 |      0 |   0 |        0 |
+   | DB         |         0 |      0 |   0 |        0 |
+   | DDB        |         0 |      0 |   0 |        0 |
+   | DISC       |         0 |      0 |   0 |        0 |
+   | DOLLARDE   |         0 |      0 |   0 |        0 |
+   | DOLLARFR   |         0 |      0 |   0 |        0 |
+   | DURATION   |         0 |      0 |   0 |        0 |
+   | EFFECT     |         0 |      0 |   0 |        0 |
+   | FV         |         0 |      0 |   0 |        0 |
+   | FVSCHEDULE |         0 |      0 |   0 |        0 |
+   | INTRATE    |         0 |      0 |   0 |        0 |
+   | IRR        |         0 |      0 |   0 |        0 |
+   | IPMT       |         0 |      0 |   0 |        0 |
+   | MDURATION  |         0 |      0 |   0 |        0 |
+   | MIRR       |         0 |      0 |   0 |        0 |
+   | NOMINAL    |         0 |      0 |   0 |        0 |
+   | NPER       |         0 |      0 |   0 |        0 |
+   | NPV        |         0 |      0 |   0 |        0 |
+   | ODDFPRICE  |         0 |      0 |   0 |        0 |
+   | ODDFYIELD  |         0 |      0 |   0 |        0 |
+   | PMT        |         0 |      0 |   0 |        0 |
+   | PV         |         0 |      0 |   0 |        0 |
    |--------------+-----------+--------+-----+----------|
    |              |           |        |     |          |
    #+END:
    
 ** Stats
    
-   #+BEGIN: propview :id "stats" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Stats")))
+   #+BEGIN: propview :id stats :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Stats)))
    | ITEM           | published | github | npm | circleci |
    |----------------+-----------+--------+-----+----------|
-   | "AVEDEV"       |         0 |      0 |   0 |        0 |
-   | "AVERAGE"      |         0 |      0 |   0 |        0 |
-   | "AVERAGEA"     |         0 |      0 |   0 |        0 |
-   | "AVERAGEIF"    |         0 |      0 |   0 |        0 |
-   | "AVERAGEIFS"   |         0 |      0 |   0 |        0 |
-   | "CORREL"       |         0 |      0 |   0 |        0 |
-   | "COUNT"        |         0 |      0 |   0 |        0 |
-   | "COUNTA"       |         0 |      0 |   0 |        0 |
-   | "COUNTIN"      |         0 |      0 |   0 |        0 |
-   | "COUNTBLANK"   |         0 |      0 |   0 |        0 |
-   | "COUNTIF"      |         0 |      0 |   0 |        0 |
-   | "COUNTIFS"     |         0 |      0 |   0 |        0 |
-   | "COUNTUNIQUE"  |         0 |      0 |   0 |        0 |
-   | "DEVSQ"        |         0 |      0 |   0 |        0 |
-   | "FISHER"       |         0 |      0 |   0 |        0 |
-   | "FISHERINV"    |         0 |      0 |   0 |        0 |
-   | "FORECAST"     |         0 |      0 |   0 |        0 |
-   | "FREQUENCY"    |         0 |      0 |   0 |        0 |
-   | "GAMMALN"      |         0 |      0 |   0 |        0 |
-   | "GEOMEAN"      |         0 |      0 |   0 |        0 |
-   | "GROWTH"       |         0 |      0 |   0 |        0 |
-   | "HARMEAN"      |         0 |      0 |   0 |        0 |
-   | "INTERCEPT"    |         0 |      0 |   0 |        0 |
-   | "KURT"         |         0 |      0 |   0 |        0 |
-   | "LARGE"        |         0 |      0 |   0 |        0 |
-   | "LINEST"       |         0 |      0 |   0 |        0 |
-   | "LOGEST"       |         0 |      0 |   0 |        0 |
-   | "MAX"          |         0 |      0 |   0 |        0 |
-   | "MAXA"         |         0 |      0 |   0 |        0 |
-   | "MEDIAN"       |         0 |      0 |   0 |        0 |
-   | "MIN"          |         0 |      0 |   0 |        0 |
-   | "MINA"         |         0 |      0 |   0 |        0 |
-   | "PEARSON"      |         0 |      0 |   0 |        0 |
-   | "PERMUT"       |         0 |      0 |   0 |        0 |
-   | "PERMUTATIONA" |         0 |      0 |   0 |        0 |
-   | "PHI"          |         0 |      0 |   0 |        0 |
-   | "PROB"         |         0 |      0 |   0 |        0 |
-   | "RSQ"          |         0 |      0 |   0 |        0 |
-   | "SKEW"         |         0 |      0 |   0 |        0 |
-   | "SLOPE"        |         0 |      0 |   0 |        0 |
-   | "SMALL"        |         0 |      0 |   0 |        0 |
-   | "STANDARDIZE"  |         0 |      0 |   0 |        0 |
-   | "STDEVA"       |         0 |      0 |   0 |        0 |
-   | "STDEVPA"      |         0 |      0 |   0 |        0 |
-   | "STEYX"        |         0 |      0 |   0 |        0 |
-   | "TRANSPOSE"    |         0 |      0 |   0 |        0 |
-   | "TREND"        |         0 |      0 |   0 |        0 |
-   | "TRIMMEAN"     |         0 |      0 |   0 |        0 |
-   | "VARA"         |         0 |      0 |   0 |        0 |
-   | "VARPA"        |         0 |      0 |   0 |        0 |
+   | AVEDEV       |         0 |      0 |   0 |        0 |
+   | AVERAGE      |         0 |      0 |   0 |        0 |
+   | AVERAGEA     |         0 |      0 |   0 |        0 |
+   | AVERAGEIF    |         0 |      0 |   0 |        0 |
+   | AVERAGEIFS   |         0 |      0 |   0 |        0 |
+   | CORREL       |         0 |      0 |   0 |        0 |
+   | COUNT        |         0 |      0 |   0 |        0 |
+   | COUNTA       |         0 |      0 |   0 |        0 |
+   | COUNTIN      |         0 |      0 |   0 |        0 |
+   | COUNTBLANK   |         0 |      0 |   0 |        0 |
+   | COUNTIF      |         0 |      0 |   0 |        0 |
+   | COUNTIFS     |         0 |      0 |   0 |        0 |
+   | COUNTUNIQUE  |         0 |      0 |   0 |        0 |
+   | DEVSQ        |         0 |      0 |   0 |        0 |
+   | FISHER       |         0 |      0 |   0 |        0 |
+   | FISHERINV    |         0 |      0 |   0 |        0 |
+   | FORECAST     |         0 |      0 |   0 |        0 |
+   | FREQUENCY    |         0 |      0 |   0 |        0 |
+   | GAMMALN      |         0 |      0 |   0 |        0 |
+   | GEOMEAN      |         0 |      0 |   0 |        0 |
+   | GROWTH       |         0 |      0 |   0 |        0 |
+   | HARMEAN      |         0 |      0 |   0 |        0 |
+   | INTERCEPT    |         0 |      0 |   0 |        0 |
+   | KURT         |         0 |      0 |   0 |        0 |
+   | LARGE        |         0 |      0 |   0 |        0 |
+   | LINEST       |         0 |      0 |   0 |        0 |
+   | LOGEST       |         0 |      0 |   0 |        0 |
+   | MAX          |         0 |      0 |   0 |        0 |
+   | MAXA         |         0 |      0 |   0 |        0 |
+   | MEDIAN       |         0 |      0 |   0 |        0 |
+   | MIN          |         0 |      0 |   0 |        0 |
+   | MINA         |         0 |      0 |   0 |        0 |
+   | PEARSON      |         0 |      0 |   0 |        0 |
+   | PERMUT       |         0 |      0 |   0 |        0 |
+   | PERMUTATIONA |         0 |      0 |   0 |        0 |
+   | PHI          |         0 |      0 |   0 |        0 |
+   | PROB         |         0 |      0 |   0 |        0 |
+   | RSQ          |         0 |      0 |   0 |        0 |
+   | SKEW         |         0 |      0 |   0 |        0 |
+   | SLOPE        |         0 |      0 |   0 |        0 |
+   | SMALL        |         0 |      0 |   0 |        0 |
+   | STANDARDIZE  |         0 |      0 |   0 |        0 |
+   | STDEVA       |         0 |      0 |   0 |        0 |
+   | STDEVPA      |         0 |      0 |   0 |        0 |
+   | STEYX        |         0 |      0 |   0 |        0 |
+   | TRANSPOSE    |         0 |      0 |   0 |        0 |
+   | TREND        |         0 |      0 |   0 |        0 |
+   | TRIMMEAN     |         0 |      0 |   0 |        0 |
+   | VARA         |         0 |      0 |   0 |        0 |
+   | VARPA        |         0 |      0 |   0 |        0 |
    |----------------+-----------+--------+-----+----------|
    |                |           |        |     |          |
    #+END:
    
 ** Engineering
    
-   #+BEGIN: propview :id "eng" :cols (ITEM published github npm circleci) :conds ((not (string= ITEM "Engineering")))
+   #+BEGIN: propview :id eng :cols (ITEM published github npm circleci) :conds ((not (string= ITEM Engineering)))
    | ITEM          | published | github | npm | circleci |
    |---------------+-----------+--------+-----+----------|
-   | "BESSELI"     |         0 |      0 |   0 |        0 |
-   | "BESSELJ"     |         0 |      0 |   0 |        0 |
-   | "BESSELK"     |         0 |      0 |   0 |        0 |
-   | "BESSELY"     |         0 |      0 |   0 |        0 |
-   | "BIN2DEC"     |         0 |      0 |   0 |        0 |
-   | "BIN2HEX"     |         0 |      0 |   0 |        0 |
-   | "BIN2OCT"     |         0 |      0 |   0 |        0 |
-   | "BITAND"      |         0 |      0 |   0 |        0 |
-   | "BITLSHIFT"   |         0 |      0 |   0 |        0 |
-   | "BITOR"       |         0 |      0 |   0 |        0 |
-   | "BITRSHIFT"   |         0 |      0 |   0 |        0 |
-   | "BITXOR"      |         0 |      0 |   0 |        0 |
-   | "COMPLEX"     |         0 |      0 |   0 |        0 |
-   | "CONVERT"     |         0 |      0 |   0 |        0 |
-   | "DEC2BIN"     |         0 |      0 |   0 |        0 |
-   | "DEC2HEX"     |         0 |      0 |   0 |        0 |
-   | "DEC2OCT"     |         0 |      0 |   0 |        0 |
-   | "DELTA"       |         0 |      0 |   0 |        0 |
-   | "ERF"         |         0 |      0 |   0 |        0 |
-   | "ERFC"        |         0 |      0 |   0 |        0 |
-   | "GESTEP"      |         0 |      0 |   0 |        0 |
-   | "HEX2BIN"     |         0 |      0 |   0 |        0 |
-   | "HEX2DEC"     |         0 |      0 |   0 |        0 |
-   | "HEX2OCT"     |         0 |      0 |   0 |        0 |
-   | "IMABS"       |         0 |      0 |   0 |        0 |
-   | "IMAGINARY"   |         0 |      0 |   0 |        0 |
-   | "IMARGUMENT"  |         0 |      0 |   0 |        0 |
-   | "IMCONJUGATE" |         0 |      0 |   0 |        0 |
-   | "IMCOS"       |         0 |      0 |   0 |        0 |
-   | "IMCOSH"      |         0 |      0 |   0 |        0 |
-   | "IMCOT"       |         0 |      0 |   0 |        0 |
-   | "IMDIV"       |         0 |      0 |   0 |        0 |
-   | "IMEXP"       |         0 |      0 |   0 |        0 |
-   | "IMLN"        |         0 |      0 |   0 |        0 |
-   | "IMLOG19"     |         0 |      0 |   0 |        0 |
-   | "IMLOG2"      |         0 |      0 |   0 |        0 |
-   | "IMPOWER"     |         0 |      0 |   0 |        0 |
-   | "IMPRODUCT"   |         0 |      0 |   0 |        0 |
-   | "IMREAL"      |         0 |      0 |   0 |        0 |
-   | "IMSEC"       |         0 |      0 |   0 |        0 |
-   | "IMSECH"      |         0 |      0 |   0 |        0 |
-   | "IMSIN"       |         0 |      0 |   0 |        0 |
-   | "IMSINH"      |         0 |      0 |   0 |        0 |
-   | "IMSQRT"      |         0 |      0 |   0 |        0 |
-   | "IMCSC"       |         0 |      0 |   0 |        0 |
-   | "IMCSCH"      |         0 |      0 |   0 |        0 |
-   | "IMSUB"       |         0 |      0 |   0 |        0 |
-   | "IMTAN"       |         0 |      0 |   0 |        0 |
-   | "OCT2BIN"     |         0 |      0 |   0 |        0 |
-   | "OCT2DEC"     |         0 |      0 |   0 |        0 |
-   | "OCT2HEX"     |         0 |      0 |   0 |        0 |
+   | BESSELI     |         0 |      0 |   0 |        0 |
+   | BESSELJ     |         0 |      0 |   0 |        0 |
+   | BESSELK     |         0 |      0 |   0 |        0 |
+   | BESSELY     |         0 |      0 |   0 |        0 |
+   | BIN2DEC     |         0 |      0 |   0 |        0 |
+   | BIN2HEX     |         0 |      0 |   0 |        0 |
+   | BIN2OCT     |         0 |      0 |   0 |        0 |
+   | BITAND      |         0 |      0 |   0 |        0 |
+   | BITLSHIFT   |         0 |      0 |   0 |        0 |
+   | BITOR       |         0 |      0 |   0 |        0 |
+   | BITRSHIFT   |         0 |      0 |   0 |        0 |
+   | BITXOR      |         0 |      0 |   0 |        0 |
+   | COMPLEX     |         0 |      0 |   0 |        0 |
+   | CONVERT     |         0 |      0 |   0 |        0 |
+   | DEC2BIN     |         0 |      0 |   0 |        0 |
+   | DEC2HEX     |         0 |      0 |   0 |        0 |
+   | DEC2OCT     |         0 |      0 |   0 |        0 |
+   | DELTA       |         0 |      0 |   0 |        0 |
+   | ERF         |         0 |      0 |   0 |        0 |
+   | ERFC        |         0 |      0 |   0 |        0 |
+   | GESTEP      |         0 |      0 |   0 |        0 |
+   | HEX2BIN     |         0 |      0 |   0 |        0 |
+   | HEX2DEC     |         0 |      0 |   0 |        0 |
+   | HEX2OCT     |         0 |      0 |   0 |        0 |
+   | IMABS       |         0 |      0 |   0 |        0 |
+   | IMAGINARY   |         0 |      0 |   0 |        0 |
+   | IMARGUMENT  |         0 |      0 |   0 |        0 |
+   | IMCONJUGATE |         0 |      0 |   0 |        0 |
+   | IMCOS       |         0 |      0 |   0 |        0 |
+   | IMCOSH      |         0 |      0 |   0 |        0 |
+   | IMCOT       |         0 |      0 |   0 |        0 |
+   | IMDIV       |         0 |      0 |   0 |        0 |
+   | IMEXP       |         0 |      0 |   0 |        0 |
+   | IMLN        |         0 |      0 |   0 |        0 |
+   | IMLOG19     |         0 |      0 |   0 |        0 |
+   | IMLOG2      |         0 |      0 |   0 |        0 |
+   | IMPOWER     |         0 |      0 |   0 |        0 |
+   | IMPRODUCT   |         0 |      0 |   0 |        0 |
+   | IMREAL      |         0 |      0 |   0 |        0 |
+   | IMSEC       |         0 |      0 |   0 |        0 |
+   | IMSECH      |         0 |      0 |   0 |        0 |
+   | IMSIN       |         0 |      0 |   0 |        0 |
+   | IMSINH      |         0 |      0 |   0 |        0 |
+   | IMSQRT      |         0 |      0 |   0 |        0 |
+   | IMCSC       |         0 |      0 |   0 |        0 |
+   | IMCSCH      |         0 |      0 |   0 |        0 |
+   | IMSUB       |         0 |      0 |   0 |        0 |
+   | IMTAN       |         0 |      0 |   0 |        0 |
+   | OCT2BIN     |         0 |      0 |   0 |        0 |
+   | OCT2DEC     |         0 |      0 |   0 |        0 |
+   | OCT2HEX    |         0 |      0 |   0 |        0 |
    |---------------+-----------+--------+-----+----------|
    |               |           |        |     |          |
    #+END:
