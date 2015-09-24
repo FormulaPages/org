@@ -24,7 +24,7 @@ functions will happily operate on JS objects of any kind. You can
 use the logical functions to clean up JSX.
 
 #+BEGIN_SRC js
-var IF = require('formula-if);
+var IF = require('formula-if');
 let el = <div className={ IF( this.state.shouldBeTrue, "YES-CSS", "NO" ) } />
 #+END_SRC
 
