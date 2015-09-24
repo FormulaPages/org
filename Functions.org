@@ -1,6 +1,10 @@
 #+TITLE: Functions
 #+AUTHOR: Peter Moresi
 
+The long-term goal is to build npm packages for
+all 300 or so functions supported commonly by spreadsheet
+software.
+
 * Status  
 ** Logical
    
@@ -387,7 +391,7 @@
   :PROPERTIES: 
   :ID:     logical
   :END:
-** AND
+** DONE AND
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -404,7 +408,7 @@
    AND(1, TRUE) = TRUE
    #+END_EXAMPLE
    
-** OR
+** DONE OR
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -421,7 +425,7 @@
    OR(FALSE, FALSE) = FALSE
    #+END_EXAMPLE
    
-** NOT
+** DONE NOT
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -438,7 +442,7 @@
    NOT(TRUE) = FALSE
    #+END_EXAMPLE
    
-** IF
+** DONE IF
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -451,7 +455,7 @@
    IF(1,"Yes", "No") = "Yes"
    #+END_EXAMPLE
    
-** IFERROR
+** DONE IFERROR
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -465,7 +469,7 @@
    IFERROR(1/0, "Error") = "Error"
    #+END_EXAMPLE
    
-** IFNA
+** DONE IFNA
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -478,7 +482,7 @@
    =IFNA(NA(), TRUE, FALSE)
    #+END_EXAMPLE
    
-** SWITCH
+** DONE SWITCH
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -502,7 +506,7 @@
    SWITCH(3, 1, "Good", 2, "OK", 3, "Bad") = "Bad"
    #+END_EXAMPLE
    
-** CHOOSE
+** DONE CHOOSE
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -520,7 +524,7 @@
    CHOOSE(3, "One", "Two", "Three") = "Three"
    #+END_EXAMPLE
    
-** XOR
+** DONE XOR
    :PROPERTIES: 
    :published: y
    :github:   y
@@ -607,7 +611,7 @@
      ws.run('INFO("directory")');
    #+END_SRC
    
-** ISARRAY
+** DONE ISARRAY
    :PROPERTIES:
    :github:   y
    :npm:      y
@@ -623,7 +627,7 @@
    ISBLANK("FOO") = FALSE
    #+END_EXAMPLE
    
-** ISBLANK
+** DONE ISBLANK
    :PROPERTIES:
    :github:   y
    :npm:      y
@@ -646,12 +650,12 @@
      assert(wb.run(0, 'ISBLANK(A4) = FALSE'), "A4 should not be blank");
    #+END_SRC
    
-** ISEMAIL
+** DONE ISEMAIL
    :PROPERTIES:
    :github:   y
    :npm:      y
    :END:
-** ISERR
+** DONE ISERR
    
    Test for any error but #N/A.
    
@@ -683,7 +687,7 @@
    :github:   y
    :npm:      y
    :END:
-** ISERROR
+** DONE ISERROR
    
    Test for error.
    
@@ -715,7 +719,7 @@
    :github:   y
    :npm:      y
    :END:
-** ISEVEN
+** DONE ISEVEN
    
    Test for even number.
    
@@ -739,7 +743,7 @@
    :github:   y
    :npm:      y
    :END:
-** ISFORMULA
+** DONE ISFORMULA
    
    Test if cell has formula.
    
@@ -776,7 +780,7 @@
    ISLOGICAL(FALSE) = TRUE
    #+END_EXAMPLE
    
-** ISNA
+** DONE ISNA
    
    Test for NA error.
    
@@ -804,7 +808,7 @@
    ISNONTEXT(NA()) = TRUE
    #+END_EXAMPLE
    
-** ISNUMBER
+** DONE ISNUMBER
    
    Returns TRUE if the *value_to_check* is a number.
    
@@ -820,7 +824,7 @@
    :github:   y
    :npm:      y
    :END:
-** ISODD
+** DONE ISODD
    
    Returns true if the value is odd.
    
@@ -836,7 +840,7 @@
    :github:   y
    :npm:      y
    :END:
-** ISTEXT
+** DONE ISTEXT
    
    Returns TRUE if the value is text.
    
@@ -971,7 +975,7 @@
   :PROPERTIES: 
   :ID:       lookup
   :END:
-** ADDRESS
+** DONE ADDRESS
    
    Returns a cell reference given a row and column.
    
@@ -987,7 +991,7 @@
      ADDRESS(3, 2, 3) = "$B3"
    #+END_EXAMPLE   
    
-** COLUMN
+** DONE COLUMN
    
    Returns the column number of a specified cell.
    
@@ -999,7 +1003,7 @@
      COLUMN("A1") = "A"
    #+END_EXAMPLE
    
-** COLUMNS
+** DONE COLUMNS
    
    Returns the number of columns in a specified array or range.
    
@@ -1019,7 +1023,7 @@
      ISERROR(COLUMNS({1,2,3,4,5;1,2}))
    #+END_EXAMPLE
    
-** HLOOKUP
+** DONE HLOOKUP
    :PROPERTIES:
    :github:   y
    :npm:      y
@@ -1033,7 +1037,7 @@
     HLOOKUP("C", {{"A","B","C"},{1,2,3}}, 2) = 3
    #+END_EXAMPLE
    
-** INDEX
+** DONE INDEX
    
    Lookup an index in an array or reference.
    
@@ -1082,7 +1086,7 @@
 
    #+END_SRC
    
-** INDIRECT
+** DONE INDIRECT
    
    Returns a cell reference given a string.
    
@@ -1090,7 +1094,7 @@
      ISCELL(INDIRECT("A1"))
    #+END_EXAMPLE
    
-** LOOKUP
+** DONE LOOKUP
    :PROPERTIES:
    :github:   y
    :npm:      y
@@ -1123,7 +1127,7 @@
        LOOKUP("C", {"A",1;"B",2;"C",3;"D",4;"E",5;"F",6}) = 3
      #+END_EXAMPLE
 
-** MATCH
+** DONE MATCH
    
    Returns the column matched by a *lookup_value* in a *lookup_reference*.
    
@@ -1162,7 +1166,7 @@
       assert( ws.run('MATCH("e?", A1:A5, 0) = NA()'), "should return 5" );
    #+END_SRC
    
-** OFFSET
+** DONE OFFSET
    Returns a reference to a cell a given number of rows and columns from a reference.
 
    OFFSET(ref, rows, cols, height, width)
@@ -1200,7 +1204,7 @@
      ROWS({1;2;3;4;5;6}) = 6
    #+END_EXAMPLE
    
-** VLOOKUP
+** DONE VLOOKUP
    :PROPERTIES:
    :github:   y
    :npm:      y
@@ -2653,7 +2657,7 @@
    
 ** BESSELK
 ** BESSELY
-** BIN2DEC
+** DONE BIN2DEC
    
    Convert a binary number to a decimal number with a maximum of 10 characters (bits). 
    
