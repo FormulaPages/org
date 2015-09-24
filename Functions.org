@@ -15,7 +15,27 @@ can nested inside indefinitely. This is not new. This is how
 spreadsheets work today.
 
 This projects seeks to make it easy to selectively and automatically
-load the dependencies needed to fulfill the user's requirements. 
+load the dependencies needed to fulfill the user's requirements to complete
+the calculations.
+
+While, I plan to provide a workbook model that will run today's 
+spreadsheets. I don't want your imagination to stop there. These
+functions will happily operate on JS objects of any kind. You can
+use the logical functions to clean up JSX.
+
+#+BEGIN_SRC js
+var IF = require('formula-if);
+let el = <div className={ IF( this.state.shouldBeTrue, "YES-CSS", "NO" ) } />
+#+END_SRC
+
+The TEXT function can format numbers with spreadsheet format codes.
+
+#+BEGIN_SRC js
+var textFormatter = require('formula-text'); // call it what you like
+textFormatter( 100, "$#,###.##" ) // => $100.00
+#+END_SRC
+
+There are a lot of useful functions today and many more will be added in the future.
 
 * Status  
 ** Logical
